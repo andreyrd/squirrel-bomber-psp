@@ -11,29 +11,34 @@ function LoaderScreen.create(percent) -- use percent here to jump there without 
 	
 	lscreen.splash = nil -- image shown above loading bar
 	lscreen.percent = percent or nil -- percent loading completed
-	lscreen.old_percent = nil -- used when animating bar
+	lscreen.oldPercent = nil -- used when animating bar
+	lscreen.fadespeed = 5
 	
 	return lscreen;
+end
+
+function LoaderScreen:setFadeSpeed(Speed)
+	self.fadespeed = Speed
 end
 
 function LoaderScreen:setSplash(new_splash) -- set a new splash, will fade it too :D
 	self.splash = new_splash
 	
-	for a = 0, 255, 5 do
+	for a = 0, 255, self.fadespeed do
 		image.blend(self.splash, 0, 0, a)
 		screen.flip()
 		screen.waitvblankstart()
 	end
 end
 
-function LoaderScreen:setPercent(new_percent) -- kindly changes and even animates a new percent loading done
-	old_percent = self.percent
-	percent = new_percent
+function LoaderScreen:setPercent(newPercent) -- kindly changes and even animates a new percent loading done
+	self.oldPercent = self.percent
+	self.percent = newPercent
 	--funky tileset animation
 end
 
-function LoaderScreen:fadeOut(Speed)
-	for a = 255, 0 , -Speed do
+function LoaderScreen:fadeOut()
+	for a = 255, 0 , -self.fadespeed do
 		image.blend(self.splash, 0, 0, a)
 		screen.flip()
 		screen.waitvblankstart()
