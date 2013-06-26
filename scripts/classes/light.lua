@@ -31,8 +31,12 @@ function Light:setId(id)
 	self.id = id
 end
 
-function Light:enabled(Status)
-	self.enabled = Status
+function Light:enable()
+	self.enabled = true
+end
+
+function Light:disable()
+	self.enabled = false
 end
 
 function Light:setType(n)

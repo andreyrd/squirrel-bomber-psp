@@ -5,6 +5,7 @@
 Vector.create()
 Vector:setPosition(x, y, z)
 Vector:setRotation(x, y, z)
+Vector:rotateTowards(vector)
 
 --Colliders
 CollisionData.create()
@@ -30,16 +31,20 @@ LoaderScreen:clearSplash()
 Camera.create()
 Camera:update()
 Camera:setView()
+Camera:lookAtPosition(vector)
+Camera:lookAtRotation() --Uses it's own vector for rotation!
 Camera.position - Vector
 
 --Light:
 Light.create(id or 1)
 Light:update()
 Light:setId(id)
-Light:enabled(status)
+Light:enable()
+Light:disable()
 Light:setType(type)
 Light:setDiffuse(Color)
 Light:setAmbient(Color)
+Light.position - Vector
 
 --Camera Manager:
 CameraManager.create()

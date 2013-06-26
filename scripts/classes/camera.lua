@@ -14,11 +14,21 @@ function Camera.create()
 	return cam
 end
 
-function Camera:update()
+function Camera:lookAtRotation()
 	self.lookAt[1] = self.position.position[1] + math.cos(math.rad(self.position.rotation[1])) * 2
 	self.lookAt[3] = self.position.position[3] + math.sin(math.rad(self.position.rotation[1])) * 2
 	self.lookAt[2] = self.position.position[2] + math.cos(math.rad(self.position.rotation[2])) * 2
 	
+end
+
+function Camera:lookAtPosition(vector)
+	self.lookAt[1] = vector.position[1]
+	self.lookAt[2] = vector.position[2]
+	self.lookAt[3] = vector.position[3]
+end
+
+function Camera:update()
+
 end
 
 function Camera:setView()
