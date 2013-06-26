@@ -8,6 +8,7 @@ dofile("scripts/classes/camera.lua")
 dofile("scripts/classes/light.lua")
 dofile("scripts/classes/cameramanager.lua")
 dofile("scripts/classes/lightmanager.lua")
+dofile("scripts/classes/environment.lua")
 
 --Competition rules require Neoflash splash screen to come first :P lame...will add once i finish splash class
 os.luadevsplash()

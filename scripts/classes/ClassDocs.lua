@@ -56,3 +56,14 @@ CameraManager:setView()
 LightManager.create()
 LightManager:addLight(Light)
 LightManager:removeLight(id or last)
+
+
+--Environment:
+Environment.create()
+Environment:setLights(status)
+Environment:setAmbient(color)
+Environment:setSpecular(Str)
+Environment:setFogNear(n)
+Environment:setFogFar(n)
+Environment:setFogColor(color)
+Environment:update()
