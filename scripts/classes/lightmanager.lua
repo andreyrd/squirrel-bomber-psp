@@ -16,5 +16,5 @@ function LightManager:addLight(light)
 end
 
 function LightManager:removeLight(id)
-	table.remove(self.Lights, id)
+	table.remove(self.Lights, id or #self.Lights)
 end
