@@ -9,7 +9,7 @@ Object.__index = Object
 function Object.create(Model)
 	local obj = {}
 	setmetatable(obj, Object)
-	obj.model = Object
+	obj.model = Model or nil
 	obj.position = Vector.create({0, 0, 0}, {0, 0, 0})
 	obj.collider = CollisionData.create()
 	

@@ -15,9 +15,10 @@ function Camera.create()
 end
 
 function Camera:update()
-	self.lookAt[1] = self.position.position[1] + math.cos(self.position.rotation[1])
-	self.lookAt[2] = self.position.position[2] + math.cos(self.position.rotation[2])
-	self.lookAt[3] = self.position.position[3] + math.sin(self.position.rotation[1])
+	self.lookAt[1] = self.position.position[1] + math.cos(math.rad(self.position.rotation[1]))
+	self.lookAt[2] = self.position.position[2] + math.cos(math.rad(self.position.rotation[2]))
+	self.lookAt[3] = self.position.position[3] + math.sin(math.rad(self.position.rotation[1]))
 	
+	world.update()
 	world.lookat(self.position.position, self.lookAt, self.up)
 end
