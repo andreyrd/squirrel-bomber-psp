@@ -7,8 +7,8 @@ function Vector.create(position, rotation)
 	local vec = {}
 	setmetatable(vec, Vector)
 	
-	vec.position = position
-	vec.rotation = rotation
+	vec.position = position or {}
+	vec.rotation = rotation or {}
 	
 	return vec
 end

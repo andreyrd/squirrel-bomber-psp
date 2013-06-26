@@ -6,28 +6,30 @@
 Object = {}
 Object.__index = Object
 
-function Object.create(Model, Vector3, Collider)
+function Object.create(Model)
 	local obj = {}
 	setmetatable(obj, Object)
 	obj.model = Object
-	obj.position = Vector3
-	obj.collider = Collider
+	obj.position = Vector.create({0, 0, 0}, {0, 0, 0})
+	obj.collider = CollisionData.create()
 	
 	return obj
 end
 
 function Object:setModel(Model)
-	obj.model = Model
+	self.model = Model
 end
 
 function Object:update()
-	self.model:position(obj.position.position[1], obj.position.position[2], obj.position.position[3])
-	self.model:rotation(obj.position.rotation[1], obj.position.rotation[2], obj.position.rotation[3])
+	self.model:position(self.position.position[1], self.position.position[2], self.position.position[3])
+	self.model:rotation(self.position.rotation[1], self.position.rotation[2], self.position.rotation[3])
+	
+	self.collider.position:setPosition(self.position.position[1], self.position.position[2], self.position.position[3])
 end
 
 function Object:clearModel()
-	obj.model:free()
-	obj.model = nil
+	self.model:free()
+	self.model = nil
 	
 	collectgarbage()
 end

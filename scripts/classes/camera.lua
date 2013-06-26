@@ -4,11 +4,11 @@
 Camera = {}
 Camera.__index = Camera
 
-function Camera.create(Vector3)
+function Camera.create()
 	local cam = {}
 	setmetatable(cam, Camera)
 	
-	cam.position = Vector3
+	cam.position = Vector.create({0, 0, 0}, {0, 0, 1})
 	cam.lookAt = {0, 0, 0}
 	cam.up = {0, 1, 0}
 	return cam
