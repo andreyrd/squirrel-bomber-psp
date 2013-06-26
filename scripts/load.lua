@@ -15,13 +15,9 @@ splashtest:setFadeSpeed(5)
 
 splashtest:setSplash(image.load('images/splash/neosplash.png'))
 
-splashtest:fadeOut()
 
-for x=1000,0,-5 do
- -- hack stuff 
- --Er... What stuff?
-end
-splashtest:setSplash(image.load('images/splash/game_splash.png'))
+
+splashtest:crossFade(image.load('images/splash/game_splash.png'))
 
 splashtest:fadeOut()
 
