@@ -1,0 +1,1 @@
+dofile('scripts/load.lua')

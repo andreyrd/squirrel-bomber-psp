@@ -1,37 +1,34 @@
--- Get the splash screen functions ready
+-- Get the splash and loading screen functions ready
 
--- Splash screen for NeoFlash competition
+-- Splash screen images should be 480x252 px and we'll make the loading bar 480x20 at the bottom
 
-function neoSplashIn()
-	neo_splash = image.load("images/splash/neosplash.png")
+LoaderScreen = {}
+LoaderScreen.__index = LoaderScreen
+
+function LoaderScreen.create(percent) -- use percent here to jump there without animation
+	local lscreen = {}
+	setmetatable(lscreen, LoaderScreen)
+	
+	lscreen.splash = nil -- image shown above loading bar
+	lscreen.percent = percent or nil -- percent loading completed
+	lscreen.old_percent = nil -- used when animating bar
+	
+	return lscreen;
+end
+
+function LoaderScreen:setSplash(new_splash) -- set a new splash, will fade it too :D
+	splash = new_splash
 	
 	for a = 0, 255, 5 do
-		image.blend(neo_splash, 0, 0, a)
+		image.blend(splash, 0, 0, a)
 		screen.flip()
 		screen.waitvblankstart()
 	end
 end
 
-function neoSplashOut()
-	for a = 255, 0, -5 do
-		image.blend(neo_splash, 0, 0, a)
-		screen.flip()
-		screen.waitvblankstart()
-	end
-	neo_splash:free()
-	game_splash = nil
-	collectgarbage()
+function LoaderScreen:setPercent(new_percent) -- kindly changes and even animates a new percent loading done
+	old_percent = self.percent
+	percent = new_percent
+	--funky tileset animation
 end
 
--- Now for the game's loading screen
-
-function gameSplashIn()
-	game_splash = image.load("images/splash/game_splash.png")
-	--loader_squirrel1 = image.load("images/loader/squirrel1.png")
-	--loader_squirrel2 = image.load("images/loader/squirrel2.png")
-	loader_nutbar = image.load("images/loader/loader_nutbar.png")
-	
-	image.blend(game_splash, 0, 0, 255)
-	image.blend(loader_nutbar, 0, 232, 255) --There's some way to use tilesets... We maybe able to animate this easily...
-	
-	
