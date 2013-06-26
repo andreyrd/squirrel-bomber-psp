@@ -45,6 +45,14 @@ function LoaderScreen:fadeOut()
 	end
 end
 
+function LoaderScreen:crossFade(newImage)
+	for a = 0, 255, self.fadespeed do
+		image.blend(self.splash, 0, 0, (a * -1 + 255) * -1)
+		image.blend(newImage, 0, 0, a)
+	end
+	self.splash = newImage
+end
+
 function LoaderScreen:clearSplash()
 	if self.splash ~= nil then
 		self.splash:free()
