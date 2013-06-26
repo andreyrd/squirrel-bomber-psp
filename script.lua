@@ -4,8 +4,7 @@ dofile('scripts/load.lua')
 
 --Test out my classes too:
 Cam = Camera.create()
-Cam.position:setPosition(0, 0, 0)
-Cam:update()
+Cam.position:setPosition(0, 1, 4)
 
 --Should 
 AcornObject = Object.create(model.load("objects/acorn.obj", 0.1, color.new(0, 255, 0)), AcornPosition, AcornCollider)
@@ -28,23 +27,33 @@ world.specular(3)
 world.fog(8, 10, color.new(0, 0, 0))
 world.update()
 
+Cam:update()
+
 while true do
-	AcornObject.model:blit()
 	controls.read()
+	Cam:setView()
+	
+	AcornObject.model:blit()
 	
 	if controls.up() then
-		Cam.position:setPosition(0, Cam.position.position[2] + 0.1, -10)
+		Cam.position:setPosition(0, Cam.position.position[2] + 0.1, 4) --Raises the camera
 		Cam:update()
-		world.lookat(Cam.position.position, Cam.lookAt, Cam.up)
 	end
 	
 	if controls.down() then
-		Cam.position:setPosition(0, Cam.position.position[2] - 0.1, -10)
+		Cam.position:setPosition(0, Cam.position.position[2] - 0.1, 4) --Lowers the camera
 		Cam:update()
-		world.lookat(Cam.position.position, Cam.lookAt, Cam.up)
 	end
-	
-	screen.print(0, 0, "Cam's Position: (" .. Cam.position.position[1] .. ", " .. Cam.position.position[2] .. ", " .. Cam.position.position[3] .. ")", color.new(255, 255, 255))
+	if controls.right() then
+		Cam.position:setRotation(Cam.position.rotation[1] + 6, 0, 0) --Rotates right
+		Cam:update()
+	end
+	if controls.left() then
+		Cam.position:setRotation(Cam.position.rotation[1] - 6, 0, 0) --Rotates left
+		Cam:update()
+	end
+	screen.print(0, 5, "Cam's Position: (" .. Cam.position.position[1] .. ", " .. Cam.position.position[2] .. ", " .. Cam.position.position[3] .. ")", color.new(255, 255, 255))
+	screen.print(0, 20, "Cam's Looking At: (" .. Cam.lookAt[1] .. ", " .. Cam.lookAt[2] .. ", " .. Cam.lookAt[3] .. ")", color.new(255, 255, 255))
 	
 	screen.flip()
 	screen.waitvblankstart()
