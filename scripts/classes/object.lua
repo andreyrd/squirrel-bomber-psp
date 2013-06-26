@@ -12,9 +12,20 @@ function Object.create(Model, Vector3, Collider)
 	return obj
 end
 
+function Object:setModel(Model)
+	obj.model = Model
+end
+
 function Object:update()
 	self.model:position(obj.position.position[1], obj.position.position[2], obj.position.position[3])
 	self.model:rotation(obj.position.rotation[1], obj.position.rotation[2], obj.position.rotation[3])
+end
+
+function Object:clearModel()
+	obj.model:free()
+	obj.model = nil
+	
+	collectgarbage()
 end
 
 
