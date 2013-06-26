@@ -1,3 +1,7 @@
+--Requires:
+--vector.lua
+--collisiondata.lua
+
 --Create our Generic Object class
 Object = {}
 Object.__index = Object

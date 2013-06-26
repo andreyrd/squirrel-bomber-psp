@@ -1,3 +1,5 @@
+--Requires:
+
 -- Get the splash and loading screen functions ready
 
 -- Splash screen images should be 480x252 px and we'll make the loading bar 480x20 at the bottom

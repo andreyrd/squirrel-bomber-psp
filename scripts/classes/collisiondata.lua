@@ -1,3 +1,5 @@
+--Requires:
+
 CollisionData = {}
 CollisionData.__index = CollisionData
 
