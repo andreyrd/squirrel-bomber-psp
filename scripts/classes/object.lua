@@ -13,8 +13,8 @@ function Object.create(Model, Vector3, Collider)
 end
 
 function Object:update()
-	self.model:position(obj.position:getPosition())
-	self.model:rotation(obj.position:getRotation())
+	self.model:position(obj.position.position[1], obj.position.position[2], obj.position.position[3])
+	self.model:rotation(obj.position.rotation[1], obj.position.rotation[2], obj.position.rotation[3])
 end
 
 
@@ -26,10 +26,8 @@ objectPosition = Vector.create({position_x, position_y, position_z}, {rotation_x
 newObject = Object.create(model.load("object.obj", 0.1, color.new(0, 0, 0)), objectPosition, objectCollision)
 
 We  can use them like:
-x, y, z = newObject.position:getPosition()
 newObject.position:setPosition(x, y, z)
 
-rotX, rotY, rotZ = newObject.position:getRotation()
 newObject.position:setRotation(rotX, rotY, rotZ)
 
 We can check for collisions with other objects like this:
