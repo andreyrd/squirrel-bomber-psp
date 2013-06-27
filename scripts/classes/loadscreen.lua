@@ -30,7 +30,7 @@ function LoaderScreen:setSplash(new_splash) -- set a new splash, will fade it to
 		image.blend(self.splash, 0, 0, a)
 		rect_r = a / 2.55 -- these are used for a brown fade for the loading rectangle
 		rect_g = a / 5.1
-		draw.fillrect(0, 252, 480, 20, color.new(rect_r, rect_g, 0)) --?
+		draw.fillrect(0, 252, 480, 20, color.new(rect_r, rect_g, 0)) -- this draws the loading rectangle at the bottom
 		screen.flip()
 		screen.waitvblankstart()
 	end
@@ -52,8 +52,10 @@ end
 
 function LoaderScreen:crossFade(newImage)
 	for a = 0, 255, self.fadespeed do
-		image.blend(self.splash, 0, 0, (a * -1 + 255) * -1)
+		image.blend(self.splash, 0, 0, (a * -1 + 255))
 		image.blend(newImage, 0, 0, a)
+		screen.flip()
+		screen.waitvblankstart()
 	end
 	self.splash = newImage
 end
