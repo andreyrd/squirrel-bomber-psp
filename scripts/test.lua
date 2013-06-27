@@ -2,7 +2,7 @@
 Cam = Camera.create()
 Cam.position:setPosition(0, 10, 0)
 
-AcornObject = Object.create(model.load("objects/acorn.obj", 0.3, color.new(0, 0, 0)))
+AcornObject = Object.create(model.load("objects/acorn.obj", 0.1, color.new(0, 0, 0)))
 AcornObject.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
 AcornObject.position:setPosition(0, 0, 0)
 AcornObject:update()
