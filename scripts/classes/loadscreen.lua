@@ -15,6 +15,7 @@ function LoaderScreen.create(percent) -- use percent here to jump there without 
 	lscreen.percent = percent or nil -- percent loading completed
 	lscreen.oldPercent = nil -- used when animating bar
 	lscreen.fadespeed = 5
+	lscreen.loader_leaf = image.load('images/loader/leaf.png')
 	
 	return lscreen;
 end
@@ -23,7 +24,7 @@ function LoaderScreen:setFadeSpeed(Speed)
 	self.fadespeed = Speed
 end
 
-function LoaderScreen:setSplash(new_splash) -- set a new splash, will fade it too :D
+function LoaderScreen:setSplash(new_splash) -- set a new splash, will fade it in too :D
 	self.splash = new_splash
 	
 	for a = 0, 255, self.fadespeed do
@@ -42,6 +43,9 @@ function LoaderScreen:setPercent(newPercent) -- kindly changes and even animates
 	
 end
 
+function LoaderScreen:drawPercent() -- draw a single frame of the loading bar
+end
+
 function LoaderScreen:fadeOut()
 	for a = 255, 0 , -self.fadespeed do
 		image.blend(self.splash, 0, 0, a)
@@ -50,7 +54,7 @@ function LoaderScreen:fadeOut()
 	end
 end
 
-function LoaderScreen:crossFade(newImage)
+function LoaderScreen:crossFade(newImage) -- Crossfades in a new splash
 	for a = 0, 255, self.fadespeed do
 		image.blend(self.splash, 0, 0, (a * -1 + 255))
 		image.blend(newImage, 0, 0, a)
