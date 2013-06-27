@@ -23,10 +23,14 @@ dofile("scripts/classes/lightmanager.lua")
 splashtest:setPercent(60)
 dofile("scripts/classes/environment.lua")
 splashtest:setPercent(70)
+dofile("scripts/classes/menu.lua")
+splashtest:setPercent(80)
 
 
 --The crossfade doesn't look so hot :/
 splashtest:crossFade(image.load('images/splash/game_splash.png'))
+
+splashtest:setPercent(100)
 
 splashtest:fadeOut()
 
