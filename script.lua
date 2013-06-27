@@ -6,7 +6,7 @@ dofile('scripts/load.lua')
 Cam = Camera.create()
 Cam.position:setPosition(0, 10, 0)
 
-AcornObject = Object.create(model.load("objects/acorn.obj", 0.1, color.new(0, 0, 0)))
+AcornObject = Object.create(model.load("objects/acorn.obj", 0.3, color.new(0, 0, 0)))
 AcornObject.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
 AcornObject.position:setPosition(0, 0, 0)
 AcornObject:update()
@@ -15,6 +15,11 @@ OtherAcorn = Object.create(AcornObject.model)
 OtherAcorn.position:setPosition(-5, 0, 0)
 OtherAcorn.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
 OtherAcorn:update() 
+
+--Some floor:
+Floor = Object.create(model.load("objects/forestfloor.obj"))
+Floor.position:setPosition(0, 0, 0)
+Floor:update()
 
 --NOTE:
 --These settings are all default. We could just do:
@@ -30,7 +35,7 @@ Atmosphere:setLights(true) --Enables lights
 Atmosphere:setAmbient(color.new(255, 255, 255)) --Sets the ambient color
 Atmosphere:setSpecular(4.04) --sets the specular strength
 Atmosphere:setFogNear(8) --Sets where fog starts
-Atmosphere:setFogFar(20) --And where it ends
+Atmosphere:setFogFar(25) --And where it ends
 Atmosphere:setFogColor(color.new(0, 0, 0)) --And the color of fog
 Atmosphere:update() --Finally, apply it to the world.
 
@@ -54,6 +59,9 @@ while true do
 	
 	Cam:lookAtPosition(AcornObject.position)
 	Cam:setView()
+	
+	Floor:update()
+	Floor.model:blit()
 	
 	AcornObject:update()
 	AcornObject.model:blit()

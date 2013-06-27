@@ -67,3 +67,9 @@ Environment:setFogNear(n)
 Environment:setFogFar(n)
 Environment:setFogColor(color)
 Environment:update()
+
+--Analog
+Analog.create()
+
+Analog:getAngle()
+Analog:update()
