@@ -68,8 +68,14 @@ Environment:setFogFar(n)
 Environment:setFogColor(color)
 Environment:update()
 
---Analog
-Analog.create()
-
-Analog:getAngle()
-Analog:update()
+--Menu:
+Menu.create(id) --Why ID?
+Menu:addItem(title, script)
+Menu:removeItem(id)
+Menu:drawFrame()
+Menu:moveUp()
+Menu:moveDown()
+Menu:executeSelected()
+Menu:setPosition(x, y)
+Menu:setSelectedColor(color)
+Menu:setUnselectedColor(color)
