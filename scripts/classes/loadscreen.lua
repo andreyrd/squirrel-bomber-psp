@@ -51,6 +51,7 @@ function LoaderScreen:drawPercent(percent) -- draw a single frame of the loading
 	image.blit(self.splash, 0, 0)
 	draw.fillrect(0, 252, 480, 20, color.new(100, 50, 0))
 	draw.fillrect(0, 252, 480*((percent or self.percent)/100), 20, color.new(0, 200, 0))
+	image.blit(self.loader_leaf, 480*((percent or self.percent)/100)-10, 252)
 end
 
 function LoaderScreen:fadeOut()

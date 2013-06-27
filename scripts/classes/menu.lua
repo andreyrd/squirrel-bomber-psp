@@ -47,10 +47,10 @@ end
 function Menu:drawFrame() -- Draws one frame of our menu
 	for a=1, #self.Items, 1 do
 		if a ~= self.selected then
-			screen.print(self.x, self.y + a * self.textSpacing - self.textSpacing, self.Items[a][1], self.unselectedColor)
+			screen.print(self.x, self.y + a * self.textSpacing - self.textSpacing + 5, self.Items[a][1], self.unselectedColor)
 		end
 	end
-	screen.print(self.x, (self.selected)*self.textSpacing + 5, self.Items[self.selected][1], self.selectedColor)
+	screen.print(self.x, (self.selected)*self.textSpacing - self.textSpacing + 5, self.Items[self.selected][1], self.selectedColor)
 end
 
 function Menu:moveUp() -- Call this when you want to move up

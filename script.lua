@@ -10,13 +10,13 @@ math.atan2(90 - 60, 130 - 30)
 while true do
 	controls.read()
 	
-	if controls.pressed("up") then
+	if controls.press("up") then
 		mainmenu:moveUp()
 	end
-	if controls.pressed("down") then
+	if controls.press("down") then
 		mainmenu:moveDown()
 	end
-	if controls.pressed("cross") then
+	if controls.press("cross") then
 		mainmenu:executeSelected()
 	end
 	
