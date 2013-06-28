@@ -1,6 +1,6 @@
--automatic pages for menus
--prettier loading screens
--nest
+-automatic pages for menus - This is all you, frank :D
+-prettier loading screens  - And this one too :P
+-nest                      - First up on my list.
 -enter/leave nest
 -forest floor with trees
 -bomb making
