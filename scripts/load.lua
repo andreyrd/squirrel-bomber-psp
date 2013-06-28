@@ -2,7 +2,7 @@ dofile('scripts/classes/loadscreen.lua')
 
 splashtest = LoaderScreen.create(0)
 
-splashtest:setFadeSpeed(5)
+splashtest:setFadeSpeed(8.5)
 
 splashtest:setSplash(image.load('images/splash/neosplash.png'))
 
@@ -28,9 +28,7 @@ splashtest:incrementPercent()
 dofile("scripts/classes/menu.lua")
 splashtest:incrementPercent()
 
-splashtest:fadeOut()
-
-splashtest:setSplash(image.load('images/splash/game_splash.png'))
+splashtest:crossFade(image.load('images/splash/game_splash.png'))
 
 splashtest:incrementPercent()
 

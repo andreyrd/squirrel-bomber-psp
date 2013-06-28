@@ -1,21 +1,39 @@
+testsplash = LoaderScreen.create(0)
+testsplash:setFadeSpeed(8.5)
+testsplash:setSplash(image.load('images/splash/game_splash.png'))
+testsplash:setObjects(29)
+
 --Test out my classes too:
 Cam = Camera.create()
+	testsplash:incrementPercent()  -- These make it look messy :/
 Cam.position:setPosition(0, 10, 0)
+	testsplash:incrementPercent()
 
 AcornObject = Object.create(model.load("objects/acorn.obj", 0.1, color.new(0, 0, 0)))
+	testsplash:incrementPercent()
 AcornObject.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
+	testsplash:incrementPercent()
 AcornObject.position:setPosition(0, 0, 0)
+	testsplash:incrementPercent()
 AcornObject:update()
+	testsplash:incrementPercent()
 
 OtherAcorn = Object.create(AcornObject.model)
+	testsplash:incrementPercent()
 OtherAcorn.position:setPosition(-5, 0, 0)
+	testsplash:incrementPercent()
 OtherAcorn.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
+	testsplash:incrementPercent()
 OtherAcorn:update() 
+	testsplash:incrementPercent()
 
 --Some floor:
 Floor = Object.create(model.load("objects/forestfloor.obj"))
+	testsplash:incrementPercent()
 Floor.position:setPosition(0, 0, 0)
+	testsplash:incrementPercent()
 Floor:update()
+	testsplash:incrementPercent()
 
 --NOTE:
 --These settings are all default. We could just do:
@@ -27,26 +45,44 @@ Atmosphere:update()
 --To get the same results.
 --I did this to show the functions and their usage.
 Atmosphere = Environment.create()
+	testsplash:incrementPercent()
 Atmosphere:setLights(true) --Enables lights
+	testsplash:incrementPercent()
 Atmosphere:setAmbient(color.new(255, 255, 255)) --Sets the ambient color
+	testsplash:incrementPercent()
 Atmosphere:setSpecular(4.04) --sets the specular strength
+	testsplash:incrementPercent()
 Atmosphere:setFogNear(8) --Sets where fog starts
+	testsplash:incrementPercent()
 Atmosphere:setFogFar(25) --And where it ends
+	testsplash:incrementPercent()
 Atmosphere:setFogColor(color.new(0, 0, 0)) --And the color of fog
+	testsplash:incrementPercent()
 Atmosphere:update() --Finally, apply it to the world.
 
 --Testing the Light Class:
 light = Light.create()
+	testsplash:incrementPercent()
 light:setId(1)
+	testsplash:incrementPercent()
 light:enable()
+	testsplash:incrementPercent()
 light:setType(2)
+	testsplash:incrementPercent()
 light:setDiffuse(color.new(0, 0, 0))
+	testsplash:incrementPercent()
 light:setAmbient(color.new(255, 255, 255))
+	testsplash:incrementPercent()
 
 light.position:setPosition(0, 0, 0)
+	testsplash:incrementPercent()
 
 light:update()
+	testsplash:incrementPercent()
 
+testsplash:fadeOut()
+testsplash:clearSplash()
+	
 world.update()
 
 
