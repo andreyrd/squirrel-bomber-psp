@@ -5,3 +5,6 @@
 -forest floor with trees
 -bomb making
 -cats
+-HUD
+-score/inventory system
+-savegame system
