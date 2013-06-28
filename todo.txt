@@ -1,0 +1,8 @@
+-automatic pages for menus
+-prettier loading screens
+-nest
+-enter/leave nest
+-forest floor with trees
+-tree-squirrel collision
+-bomb making
+-cats
