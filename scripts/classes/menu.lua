@@ -41,7 +41,7 @@ end
 
 function Menu:drawFrame() -- Draws one frame of our menu
 	page = Math.ceil(self.selected / 4)
-	for a = (page*4)-3 , #self.Items, 1 do
+	for a = (page * 4) - 3 , #self.Items, 1 do
 		image.blit(self.item_bg, self.x, self.y + (a - 1) * (50 + self.itemSpacing))
 		if a~=self.selected then
 			screen.print(self.x + 125 - 6 * string.len(self.Items[a][1]),
