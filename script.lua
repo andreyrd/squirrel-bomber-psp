@@ -7,8 +7,6 @@ mainmenu:addItem('Test3', 'scripts/test3.lua')
 mainmenu:centerMenu()
 mainmenu:setPositionY(20)
 
-math.atan2(90 - 60, 130 - 30)
-
 while true do
 	controls.read()
 	

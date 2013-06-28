@@ -17,7 +17,15 @@ function LoaderScreen.create(percent) -- use percent here to jump there without 
 	lscreen.fadespeed = 5
 	lscreen.loader_leaf = image.load('images/loader/leaf.png')
 	
+	lscreen.loadObjects = 0
+	lscreen.increment = 0
+	
 	return lscreen;
+end
+
+function LoaderScreen:setObjects(n)
+	self.loadObjects = n
+	self.increment = 100 / self.loadObjects
 end
 
 function LoaderScreen:setFadeSpeed(Speed)
@@ -45,6 +53,10 @@ function LoaderScreen:setPercent(newPercent) -- kindly changes and even animates
 		screen.flip()
 		screen.waitvblankstart()
 	end
+end
+
+function LoaderScreen:incrementPercent()
+	self:setPercent(self.percent + self.increment)
 end
 
 function LoaderScreen:drawPercent(percent) -- draw a single frame of the loading bar with splash of course
