@@ -2,8 +2,9 @@ dofile('scripts/load.lua')
 
 mainmenu = Menu.create(1)
 mainmenu:addItem('Test', 'scripts/test.lua')
-mainmenu:addItem('Test2', 'scripts/test2.lua')
-mainmenu:addItem('Test3', 'scripts/test3.lua')
+mainmenu:addItem('Scores', 'scripts/scores.lua')
+mainmenu:addItem('Options', 'scripts/options.lua')
+mainmenu:addItem('Exit', 'scripts/exit.lua')
 mainmenu:centerMenu()
 mainmenu:setPositionY(20)
 

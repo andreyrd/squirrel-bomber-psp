@@ -8,10 +8,10 @@ function Menu.create()
 	menu.Items = {}
 	menu.selected = 1
 	
-	menu.itemSpacing = 15
+	menu.itemSpacing = 10
 	
-	menu.x = 0
-	menu.y = 0
+	menu.x = 115
+	menu.y = 10
 	
 	menu.font = nil
 	
@@ -21,24 +21,6 @@ function Menu.create()
 	menu.item_bg = image.load('images/menus/plank.png') -- Image behind the menu item. 150 x 30 px.
 	
 	return menu
-end
-
-function Menu:setPosition(x, y)
-	self.x = x
-	self.y = y
-end
-
-function Menu:setPositionX(x)
-	self.x = x
-end
-
-function Menu:setPositionY(y)
-	self.y = y
-end
-
-function Menu:centerMenu()
-	self.x = 115
-	self.y = y
 end
 
 function Menu:setSelectedColor(color)
