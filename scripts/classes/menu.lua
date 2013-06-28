@@ -40,13 +40,20 @@ function Menu:removeItem(id)
 end
 
 function Menu:drawFrame() -- Draws one frame of our menu
-	for a=1, #self.Items, 1 do
+	page = Math.ceil(self.selected / 4)
+	for a = (page*4)-3 , #self.Items, 1 do
 		image.blit(self.item_bg, self.x, self.y + (a - 1) * (50 + self.itemSpacing))
 		if a~=self.selected then
-			screen.print(self.x + 125 - 6 * string.len(self.Items[a][1]), self.y + 20 + (a - 1) * (50 + self.itemSpacing), self.Items[a][1], self.unselectedColor)
+			screen.print(self.x + 125 - 6 * string.len(self.Items[a][1]),
+			             self.y + 20 + (a - 1) * (50 + self.itemSpacing),
+						 self.Items[a][1],
+						 self.unselectedColor)
 		end
 	end
-	screen.print(self.x + 125 - 6 * string.len(self.Items[self.selected][1]), self.y + 20 + (self.selected - 1) * (50 + self.itemSpacing), self.Items[self.selected][1], self.selectedColor)
+	screen.print(self.x + 125 - 6 * string.len(self.Items[self.selected][1]), 
+	             self.y + 20 + (self.selected - 1) * (50 + self.itemSpacing), 
+				 self.Items[self.selected][1], 
+				 self.selectedColor)
 end
 
 function Menu:moveUp() -- Call this when you want to move up
