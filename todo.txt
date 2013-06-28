@@ -3,6 +3,5 @@
 -nest
 -enter/leave nest
 -forest floor with trees
--tree-squirrel collision
 -bomb making
 -cats

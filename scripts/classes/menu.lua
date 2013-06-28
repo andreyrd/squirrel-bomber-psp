@@ -11,7 +11,7 @@ function Menu.create()
 	menu.itemSpacing = 10
 	
 	menu.x = 115
-	menu.y = 10
+	menu.y = 21
 	
 	menu.font = nil
 	
