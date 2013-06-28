@@ -4,6 +4,8 @@ mainmenu = Menu.create(1)
 mainmenu:addItem('Test', 'scripts/test.lua')
 mainmenu:addItem('Test2', 'scripts/test2.lua')
 mainmenu:addItem('Test3', 'scripts/test3.lua')
+mainmenu:centerMenu()
+mainmenu:setPositionY(20)
 
 math.atan2(90 - 60, 130 - 30)
 
