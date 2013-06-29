@@ -20,10 +20,7 @@ function Credits.create()
 end
 
 function Credits:calcInitPosY()
-	self.posY = (#self.Items * 15) + ((#self.Items - 1) * self.lineSpacing)
-	if direction == -1 then
-		self.posY = -1 * self.posY
-	end
+	self.posY = ((#self.Items * 15) + ((#self.Items - 1) * self.lineSpacing)) * self.direction
 end
 
 function Credits:setAlign(align) -- 1-left, 2-center, 3-right
@@ -32,6 +29,7 @@ end
 
 function Credits:setDirection(direction) -- -1 = down, 1 = up
 	self.direction = direction
+	self:calcInitPosY()
 end
 
 function Credits:setLineSpacing(lineSpacing)
