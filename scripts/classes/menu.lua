@@ -50,7 +50,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 			n = n + 1
 			image.blit(self.item_bg, self.x, self.y + (n - 1) * (50 + self.itemSpacing))
 			if a~=self.selected then
-				screen.print(self.x + 125 - 6 * string.len(self.Items[a][1]),
+				screen.print(self.x + 125 - (screen.textwidth(self.Items[a][1])/2),
 							 self.y + 20 + (n - 1) * (50 + self.itemSpacing),
 							 self.Items[a][1],
 							 self.unselectedColor)
@@ -63,7 +63,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 			n = n + 1
 			image.blit(self.item_bg, self.x, self.y + (n - 1) * (50 + self.itemSpacing))
 			if a~=self.selected then
-				screen.print(self.x + 125 - 6 * string.len(self.Items[a][1]),
+				screen.print(self.x + 125 - (screen.textwidth(self.Items[a][1])/2),
 							 self.y + 20 + (n - 1) * (50 + self.itemSpacing),
 							 self.Items[a][1],
 							 self.unselectedColor)
@@ -71,7 +71,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 		end
 	end
 	n = self.selected - ((page - 1) * 4)
-	screen.print(self.x + 125 - 6 * string.len(self.Items[self.selected][1]), 
+	screen.print(self.x + 125 - (screen.textwidth(self.Items[self.selected][1])/2), 
 				 self.y + 20 + (n - 1) * (50 + self.itemSpacing), 
 				 self.Items[self.selected][1], 
 				 self.selectedColor)
