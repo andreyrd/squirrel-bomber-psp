@@ -1,0 +1,15 @@
+﻿WLAN: Wi-Fi
+Functions
+
+boolean wlan_init (config)
+  Connect to a wireless access point.
+************************************************** ******************************
+Function Documentation
+
+boolean wlan.init (config)
+  Connect to a wireless access point.
+  parameters:
+  config connection number to use. If you specify a number, use the connection previously configured on the PSP. When using the connection number 0, connections dialog opens and the user choose the preferred connection.
+  Unless you use the dialog, this function returns immediately, thus attempting to connect immediately after using this function would give error, because it takes a few seconds to connect. You can check the status of the connection using the function xxxxxxx.
+  Returns:
+  True if connected or started connecting, otherwise false.

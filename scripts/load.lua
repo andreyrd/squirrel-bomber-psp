@@ -1,37 +1,38 @@
 dofile('scripts/classes/loadscreen.lua')
 
-splashtest = LoaderScreen.create(0)
+loadsplash = LoaderScreen.create(0)
 
-splashtest:setFadeSpeed(8.5)
+loadsplash:setFadeSpeed(8.5)
 
-splashtest:setSplash(image.load('images/splash/neosplash.png'))
+loadsplash:setSplash(image.load('images/splash/neosplash.png'))
 
-splashtest:setObjects(10)
+loadsplash:setObjects(11)
 
 --Load Classes:
 dofile("scripts/classes/vector.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/collisiondata.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/object.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/camera.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/light.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/cameramanager.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
+
+loadsplash:crossFade(image.load('images/splash/game_splash.png'))
+
 dofile("scripts/classes/lightmanager.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/environment.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
 dofile("scripts/classes/menu.lua")
-splashtest:incrementPercent()
+loadsplash:incrementPercent()
+dofile("scripts/classes/credits.lua")
+loadsplash:incrementPercent()
 
-splashtest:crossFade(image.load('images/splash/game_splash.png'))
+loadsplash:fadeOut()
 
-splashtest:incrementPercent()
-
-splashtest:fadeOut()
-
-splashtest:clearSplash()
+loadsplash:clearSplash()

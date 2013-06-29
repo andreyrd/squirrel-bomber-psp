@@ -6,3 +6,6 @@
 -HUD
 -score/inventory system
 -savegame system
+-customizable graphics
+-customizable controls
+-sound settings

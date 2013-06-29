@@ -1,12 +1,15 @@
 mainmenu = Menu.create()
 mainmenu:addItem('Test', 'scripts/test.lua')
-mainmenu:addItem('Scores', 'scripts/scores.lua')
+mainmenu:addItem('About', 'scripts/about.lua')
 mainmenu:addItem('Options', 'scripts/options.lua')
 mainmenu:addItem('Exit', 'scripts/exit.lua')
 mainmenu:addItem('Test2', 'scripts/test2.lua')
 mainmenu:addItem('Test3', 'scripts/test3.lua')
 mainmenu:addItem('Test4', 'scripts/test3.lua')
 mainmenu:addItem('Test5', 'scripts/test3.lua')
+mainmenu:addItem('About', 'scripts/about.lua')
+mainmenu:addItem('Tst', 'scripts/about.lua')
+mainmenu:addItem('Reset', 'scripts/reset.lua')
 
 while true do
 	controls.read()
