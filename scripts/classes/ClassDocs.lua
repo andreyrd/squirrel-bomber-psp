@@ -9,7 +9,8 @@ Vector:rotateTowards(vector)
 
 --Colliders
 CollisionData.create()
-CollisionData.checkCollision(CollisionData)
+CollisionData:setData(data)
+CollisionData:checkCollision(CollisionData)
 CollisionData.position - Vector
 
 --Objects:
