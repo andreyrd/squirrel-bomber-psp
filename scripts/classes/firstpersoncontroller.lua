@@ -46,7 +46,6 @@ function FPSController:update()
 	self.camera.position:setPosition(self.position.position[1], self.position.position[2], self.position.position[3])
 	self.camera.position:setRotation(self.position.rotation[1], self.position.rotation[2], 0)
 	self.camera:lookAtRotation()
-	self.camera:setView()
 	
 	--Check controls.
 	if self.keys.square() then

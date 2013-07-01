@@ -6,7 +6,7 @@ testsplash:setObjects(29)
 --Test out my classes too:
 Cam = Camera.create()
 	testsplash:incrementPercent()  -- These make it look messy :/
-Cam.position:setPosition(0, 10, 0)
+Cam.position:setPosition(0, 10, 0) -- Then don't add it... This is only a test
 	testsplash:incrementPercent()
 
 AcornObject = Object.create(model.load("objects/acorn.obj", 0.1, color.new(0, 0, 0)))
