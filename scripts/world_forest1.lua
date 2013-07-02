@@ -3,7 +3,7 @@
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
-forest1splash:setObjects(26)
+forest1splash:setObjects(27)
 
 Cam = Camera.create()
 	forest1splash:incrementPercent()
@@ -70,6 +70,9 @@ light:setAmbient(color.new(255,255,255))
 light.position:setPosition(0,5,0)
 	forest1splash:incrementPercent()
 light:update()
+	forest1splash:incrementPercent()
+
+controls.analogtodigital(49)
 	forest1splash:incrementPercent()
 	
 forest1splash:fadeOut()
