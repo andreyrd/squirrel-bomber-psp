@@ -26,8 +26,8 @@ function Vector:setRotation(x, y, z)
 end
 
 function Vector:rotateTowards(vector)
-	local angleXZ = math.atan2(vector.position[3] - self.position[3], vector.position[1] - self.position[1])
-	local angleYZ = math.atan2(vector.position[2] - self.position[2], vector.position[3] - self.position[3])
+	local angleXZ = math.atan((vector.position[3] - self.position[3]) / (vector.position[1] - self.position[1]))
+	local angleYZ = math.atan((vector.position[2] - self.position[2]) / (vector.position[3] - self.position[3]))
 	
 	self.rotation[1] = angleXZ
 	self.rotation[2] = angleYZ

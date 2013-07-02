@@ -7,7 +7,7 @@ forest1splash:setObjects(26)
 
 Cam = Camera.create()
 	forest1splash:incrementPercent()
-Cam.position:setPosition(0, 15, 0)
+Cam.position:setPosition(1, 13, 0)
 	forest1splash:incrementPercent()
 
 TreeModel = model.load("objects/treebase.obj")
@@ -79,8 +79,20 @@ world.update()
 
 while true do
 	controls.read()
+	if controls.analogx() > 103 and controls.analogx() < 151 then 
+		AnaX = 0
+	else
+		AnaX = controls.analogx()
+	end
+	if controls.analogy() > 103 and controls.analogy() < 151 then	
+		AnaY = 0
+	else
+		AnaY = controls.analogy()
+	end
 	
 	world.update()
+	
+	Cam.position:rotateTowards(AcornObject.position) --I'm using this to store the rotation
 	
 	Cam:lookAtPosition(AcornObject.position)
 	Cam:setView()
@@ -105,24 +117,27 @@ while true do
 		Trees[a].model:blit()
 	end
 	
+	CAngle = Cam.position.rotation
+	CAngle[1] = math.rad(CAngle[1])
+	
 	if controls.left() then
-		AcornObject.position:setPosition(AcornObject.position.position[1] - 0.1, AcornObject.position.position[2], AcornObject.position.position[3])
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 270) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 270) / 5)
 	end
 	if controls.right() then
-		AcornObject.position:setPosition(AcornObject.position.position[1] + 0.1, AcornObject.position.position[2], AcornObject.position.position[3])
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 90) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 90) / 5)
 	end
 	if controls.up() then
-		AcornObject.position:setPosition(AcornObject.position.position[1], AcornObject.position.position[2], AcornObject.position.position[3] + 0.1)
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1]) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1]) / 5)
 	end
 	if controls.down() then
-		AcornObject.position:setPosition(AcornObject.position.position[1], AcornObject.position.position[2], AcornObject.position.position[3] - 0.1)
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 180) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 180) / 5)
 	end
 	
 	screen.print(0, 2, "Distance to Player: " .. Dist, color.new(255, 255, 255))
 	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
 	screen.print(0, 32, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
-	--screen.print(0, 48, "Analog: (" .. AnaX .. ", " .. AnaY, color.new(255, 255, 255))
-	
+	screen.print(0, 48, "Analog: (" .. AnaX .. ", " .. AnaY .. ")", color.new(255, 255, 255))
+	screen.print(0, 64, "Angle to player: " .. math.deg(CAngle[1]), color.new(255, 255, 255))
 	
 	screen.flip()
 	screen.waitvblank()
