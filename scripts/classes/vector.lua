@@ -37,7 +37,7 @@ function Vector:rotateTowards(vector)
 end
 
 function Vector:getDistanceTo(vector)
-	local d = math.sqrt((vector.position[1] - self.position[1])^2 + (vector.position[2] - self.position[2])^2 + (vector.position[3] - self.position[3])^2)
+	local d = math.sqrt(math.floor((vector.position[1] - self.position[1])^2 + (vector.position[2] - self.position[2])^2 + (vector.position[3] - self.position[3])^2) * 100) / 100
 	return d
 end
 

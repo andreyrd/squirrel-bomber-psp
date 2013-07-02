@@ -92,10 +92,12 @@ while true do
 	AcornObject.model:blit()
 	
 	--Move Cam towards Player
-	Dist = AcornObject.position:getDistanceTo(Cam.position)
-	if Dist < 20 then	
-		Cam.position:moveTowards(AcornObject.position, 0.1)
-	end
+	APos = AcornObject.position.position
+	BPos = Cam.position.position
+	Dist = math.sqrt((APos[1] - BPos[1]) ^ 2 + (APos[2] - BPos[2]) ^ 2 + (APos[3] - BPos[3]) ^ 2)
+	--if Dist < 200 then	
+	--	Cam.position:moveTowards(AcornObject.position, 0.01)
+	--end
 	
 	for a = 1, #Trees, 1 do
 		Trees[a]:update()
