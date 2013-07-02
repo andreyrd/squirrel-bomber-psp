@@ -1,5 +1,7 @@
 --[[ This is Messy. It needs organized ]]--
 
+rad = math.rad
+
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
@@ -72,7 +74,7 @@ light.position:setPosition(0,5,0)
 light:update()
 	forest1splash:incrementPercent()
 
-controls.analogtodigital(49)
+controls.analogtodigital(50)
 	forest1splash:incrementPercent()
 	
 forest1splash:fadeOut()
@@ -82,16 +84,6 @@ world.update()
 
 while true do
 	controls.read()
-	if controls.analogx() > 103 and controls.analogx() < 151 then 
-		AnaX = 0
-	else
-		AnaX = controls.analogx()
-	end
-	if controls.analogy() > 103 and controls.analogy() < 151 then	
-		AnaY = 0
-	else
-		AnaY = controls.analogy()
-	end
 	
 	world.update()
 	
@@ -121,26 +113,25 @@ while true do
 	end
 	
 	CAngle = Cam.position.rotation
-	CAngle[1] = math.rad(CAngle[1])
+	CAngle[1] = CAngle[1]
 	
 	if controls.left() then
-		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 270) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 270) / 5)
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + rad(270)) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + rad(270)) / 5)
 	end
 	if controls.right() then
-		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 90) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 90) / 5)
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + rad(90)) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + rad(90)) / 5)
 	end
 	if controls.up() then
 		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1]) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1]) / 5)
 	end
 	if controls.down() then
-		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + 180) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + 180) / 5)
+		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + rad(180)) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + rad(180)) / 5)
 	end
 	
 	screen.print(0, 2, "Distance to Player: " .. Dist, color.new(255, 255, 255))
 	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
 	screen.print(0, 32, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
-	screen.print(0, 48, "Analog: (" .. AnaX .. ", " .. AnaY .. ")", color.new(255, 255, 255))
-	screen.print(0, 64, "Angle to player: " .. math.deg(CAngle[1]), color.new(255, 255, 255))
+	screen.print(0, 48, "Angle to player: " .. math.deg(CAngle[1]), color.new(255, 255, 255))
 	
 	screen.flip()
 	screen.waitvblank()
