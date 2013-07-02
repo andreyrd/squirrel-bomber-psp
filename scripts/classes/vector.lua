@@ -35,3 +35,28 @@ function Vector:rotateTowards(vector)
 	
 	--Now that I've done that... I'm kinda wondering why we didn't just set the camera's lookAt to the objects position :P
 end
+
+function Vector:getDistanceTo(vector)
+	local d = math.sqrt((vector.position[1] - self.position[1])^2 + (vector.position[2] - self.position[2])^2 + (vector.position[3] - self.position[3])^2)
+	return d
+end
+
+function Vector:moveTowards(vector, speed)
+	if self.position[1] > vector.position[1] then
+		self.position[1] = self.position[1] - speed
+	elseif self.position[1] < vector.position[1] then
+		self.position[1] = self.position[1] + speed
+	end
+	
+	if self.position[2] > vector.position[2] then
+		self.position[2] = self.position[2] - speed
+	elseif self.position[2] < vector.position[2] then
+		self.position[2] = self.position[2] + speed
+	end
+	
+	if self.position[3] > vector.position[3] then
+		self.position[3] = self.position[3] - speed
+	elseif self.position[3] < vector.position[3] then
+		self.position[3] = self.position[3] + speed
+	end
+end

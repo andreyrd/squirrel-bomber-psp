@@ -11,7 +11,7 @@
 	
 	Tree Base: 10 x 30 x 10
 	
-	Forest Floor 125 x 0 x 125
+	Forest Floor 250 x 0 x 250
 	
 	Table: 4 x 2 x 3
 ]]--

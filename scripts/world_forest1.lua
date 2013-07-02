@@ -7,7 +7,7 @@ forest1splash:setObjects(26)
 
 Cam = Camera.create()
 	forest1splash:incrementPercent()
-Cam.position:setPosition(0, 7, 0) --Position is WAY too high
+Cam.position:setPosition(0, 15, 0)
 	forest1splash:incrementPercent()
 
 TreeModel = model.load("objects/treebase.obj")
@@ -51,13 +51,13 @@ Atmosphere:setFogNear(40) --Sets where fog starts
 	forest1splash:incrementPercent()
 Atmosphere:setFogFar(50) --And where it ends
 	forest1splash:incrementPercent()
-Atmosphere:setFogColor(color.new(255, 255, 255)) --And the color of fog ?? WHITE?
+Atmosphere:setFogColor(color.new(1, 102, 0.5)) --And the color of fog ?? WHITE?
 	forest1splash:incrementPercent()
 Atmosphere:update()
 	forest1splash:incrementPercent()
 
 light = Light.create()
-ligh:setId(1)
+light:setId(1)
 	forest1splash:incrementPercent()
 light:enable()
 	forest1splash:incrementPercent()
@@ -80,6 +80,8 @@ world.update()
 while true do
 	controls.read()
 	
+	world.update()
+	
 	Cam:lookAtPosition(AcornObject.position)
 	Cam:setView()
 	
@@ -88,6 +90,12 @@ while true do
 	
 	AcornObject:update()
 	AcornObject.model:blit()
+	
+	--Move Cam towards Player
+	Dist = AcornObject.position:getDistanceTo(Cam.position)
+	if Dist < 20 then	
+		Cam.position:moveTowards(AcornObject.position, 0.1)
+	end
 	
 	for a = 1, #Trees, 1 do
 		Trees[a]:update()
@@ -106,6 +114,8 @@ while true do
 	if controls.down() then
 		AcornObject.position:setPosition(AcornObject.position.position[1], AcornObject.position.position[2], AcornObject.position.position[3] - 0.1)
 	end
+	
+	screen.print(0, 10, Dist, color.new(255, 255, 255))
 	
 	screen.flip()
 	screen.waitvblank()
