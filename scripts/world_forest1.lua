@@ -82,8 +82,6 @@ while true do
 	
 	world.update()
 	
-	Cam.position:rotateTowards(AcornObject.position)
-	
 	Cam:lookAtPosition(AcornObject.position)
 	Cam:setView()
 	
@@ -123,6 +121,7 @@ while true do
 	screen.print(0, 2, "Distance to Player: " .. Dist, color.new(255, 255, 255))
 	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
 	screen.print(0, 32, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
+	--screen.print(0, 48, "Analog: (" .. AnaX .. ", " .. AnaY, color.new(255, 255, 255))
 	
 	
 	screen.flip()
