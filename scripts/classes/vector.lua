@@ -37,26 +37,32 @@ function Vector:rotateTowards(vector)
 end
 
 function Vector:getDistanceTo(vector)
-	local d = math.sqrt(math.floor((vector.position[1] - self.position[1])^2 + (vector.position[2] - self.position[2])^2 + (vector.position[3] - self.position[3])^2) * 100) / 100
+	local d = math.sqrt((vector.position[1] - self.position[1])*(vector.position[1] - self.position[1]) + (vector.position[2] - self.position[2])*(vector.position[2] - self.position[2]) + (vector.position[3] - self.position[3])*(vector.position[3] - self.position[3]))
 	return d
 end
 
-function Vector:moveTowards(vector, speed)
-	if self.position[1] > vector.position[1] then
-		self.position[1] = self.position[1] - speed
-	elseif self.position[1] < vector.position[1] then
-		self.position[1] = self.position[1] + speed
+function Vector:moveTowards(vector, speed, Tr)
+	if Tr[1] then
+		if self.position[1] > vector.position[1] then
+			self.position[1] = self.position[1] - speed
+		elseif self.position[1] < vector.position[1] then
+			self.position[1] = self.position[1] + speed
+		end
 	end
 	
-	if self.position[2] > vector.position[2] then
-		self.position[2] = self.position[2] - speed
-	elseif self.position[2] < vector.position[2] then
-		self.position[2] = self.position[2] + speed
+	if Tr[2] then
+		if self.position[2] > vector.position[2] then
+			self.position[2] = self.position[2] - speed
+		elseif self.position[2] < vector.position[2] then
+			self.position[2] = self.position[2] + speed
+		end
 	end
 	
-	if self.position[3] > vector.position[3] then
-		self.position[3] = self.position[3] - speed
-	elseif self.position[3] < vector.position[3] then
-		self.position[3] = self.position[3] + speed
+	if Tr[3] then
+		if self.position[3] > vector.position[3] then
+			self.position[3] = self.position[3] - speed
+		elseif self.position[3] < vector.position[3] then
+			self.position[3] = self.position[3] + speed
+		end
 	end
 end
