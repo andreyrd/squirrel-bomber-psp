@@ -103,8 +103,8 @@ while true do
 	
 	--Move Cam towards Player
 	Dist = AcornObject.position:getDistanceTo(Cam.position)
-	if Dist > 20 then	
-		Cam.position:moveTowards(AcornObject.position, 0.1, {true, false, true})
+	if Dist > 17 then	
+		Cam.position:moveTowards(AcornObject.position, 0.15, {true, false, true})
 	end
 	
 	for a = 1, #Trees, 1 do
@@ -126,6 +126,13 @@ while true do
 	end
 	if controls.down() then
 		AcornObject.position:setPosition(AcornObject.position.position[1] + math.cos(CAngle[1] + rad(180)) / 5, AcornObject.position.position[2], AcornObject.position.position[3] + math.sin(CAngle[1] + rad(180)) / 5)
+	end
+	if controls.l() then
+		Cam.position:setPosition(Cam.position.position[1] + math.cos(CAngle[1] + rad (270)) / 5, Cam.position.position[2], Cam.position.position[3] + math.sin(CAngle[1] + rad(270)) / 5)
+	end
+	if controls.r() then
+		Cam.position:setPosition(Cam.position.position[1] + math.cos(CAngle[1] + rad (90)) / 5, Cam.position.position[2], Cam.position.position[3] + math.sin(CAngle[1] + rad(90)) / 5)
+		
 	end
 	
 	screen.print(0, 2, "Distance to Player: " .. Dist, color.new(255, 255, 255))

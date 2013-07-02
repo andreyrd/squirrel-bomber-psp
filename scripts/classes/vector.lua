@@ -32,8 +32,6 @@ function Vector:rotateTowards(vector)
 	self.rotation[1] = angleXZ
 	self.rotation[2] = angleYZ
 	self.rotation[3] = angleXZ
-	
-	--Now that I've done that... I'm kinda wondering why we didn't just set the camera's lookAt to the objects position :P
 end
 
 function Vector:getDistanceTo(vector)
