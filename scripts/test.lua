@@ -89,6 +89,8 @@ world.update()
 while true do
 	controls.read()
 	
+	world.update()
+	
 	Cam:lookAtPosition(AcornObject.position)
 	Cam:setView()
 	

@@ -1,3 +1,5 @@
+--[[ This is Messy. It needs organized ]]--
+
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
@@ -5,13 +7,14 @@ forest1splash:setObjects(26)
 
 Cam = Camera.create()
 	forest1splash:incrementPercent()
-Cam.position:setPosition(0, 20, 0)
+Cam.position:setPosition(0, 7, 0) --Position is WAY too high
 	forest1splash:incrementPercent()
 
 TreeModel = model.load("objects/treebase.obj")
 	forest1splash:incrementPercent()
 TreeMap = {{-30,0,0},{30,0,0},{0,0,30}}
 Trees = {}
+
 for a = 1, #TreeMap, 1 do
 	table.insert(Trees, Object.create(TreeModel))
 	Trees[a].position:setPosition(TreeMap[a][1], TreeMap[a][2], TreeMap[a][3])
@@ -48,12 +51,13 @@ Atmosphere:setFogNear(40) --Sets where fog starts
 	forest1splash:incrementPercent()
 Atmosphere:setFogFar(50) --And where it ends
 	forest1splash:incrementPercent()
-Atmosphere:setFogColor(color.new(255, 255, 255)) --And the color of fog
+Atmosphere:setFogColor(color.new(255, 255, 255)) --And the color of fog ?? WHITE?
 	forest1splash:incrementPercent()
 Atmosphere:update()
 	forest1splash:incrementPercent()
 
 light = Light.create()
+ligh:setId(1)
 	forest1splash:incrementPercent()
 light:enable()
 	forest1splash:incrementPercent()
