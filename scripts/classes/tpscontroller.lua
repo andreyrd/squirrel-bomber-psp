@@ -56,9 +56,9 @@ function TPSController:update()
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(180)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(180)) / 5)
 	end
 	if controls.l() then
-		Cam.position:setPosition(Cam.position.position[1] + math.cos(CAngle[1] + math.rad (270)) / 5, Cam.position.position[2], Cam.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
+		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (270)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
 	end
 	if controls.r() then
-		Cam.position:setPosition(Cam.position.position[1] + math.cos(CAngle[1] + math.rad (90)) / 5, Cam.position.position[2], Cam.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
+		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (90)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
 	end
 end

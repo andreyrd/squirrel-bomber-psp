@@ -4,10 +4,9 @@ forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
 forest1splash:setObjects(27)
-inc = forest1splash:incrementPercent
 
 TreeModel = model.load("objects/treebase.obj", 0.15, color.new(0, 0, 0))
-	inc()
+	forest1splash:incrementPercent()
 TreeMap = {{-30,0,0},{30,0,0},{0,0,30}}
 Trees = {}
 
@@ -17,57 +16,57 @@ for a = 1, #TreeMap, 1 do
 	Trees[a].collider:setData({{-(10)/2, 0, -(10)/2}, {10, 10, 10}})
 	Trees[a]:update()
 end
-	inc()
+	forest1splash:incrementPercent()
 
 Floor = Object.create(model.load("objects/forestfloor.obj"))
-	inc()
+	forest1splash:incrementPercent()
 Floor.position:setPosition(2, 0, 0)
-	inc()
+	forest1splash:incrementPercent()
 Floor:update()
-	inc()
+	forest1splash:incrementPercent()
 
 Player = TPSController.create(model.load("objects/acorn.obj", 0.15, color.new(0, 0, 0)))
-	inc()
+	forest1splash:incrementPercent()
 Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
-	inc()
+	forest1splash:incrementPercent()
 Player.object:update()
-	inc()
+	forest1splash:incrementPercent()
 	
 Atmosphere = Environment.create()
-	inc()
+	forest1splash:incrementPercent()
 Atmosphere:setLights(true) --Enables lights
-	inc()
+	forest1splash:incrementPercent()
 Atmosphere:setAmbient(color.new(255, 255, 255)) --Sets the ambient color
-	inc()
+	forest1splash:incrementPercent()
 Atmosphere:setSpecular(4.04) --sets the specular strength
-	inc()
-Atmosphere:setFogNear(20) --Sets where fog starts
-	inc()
+	forest1splash:incrementPercent()
+Atmosphere:setFogNear(10) --Sets where fog starts
+	forest1splash:incrementPercent()
 Atmosphere:setFogFar(30) --And where it ends
-	inc()
-Atmosphere:setFogColor(color.new(0, 0, 20)) --And the color of fog ?? WHITE?
-	inc()
+	forest1splash:incrementPercent()
+Atmosphere:setFogColor(color.new(0, 0, 61)) --And the color of fog ?? WHITE?
+	forest1splash:incrementPercent()
 Atmosphere:update()
-	inc()
+	forest1splash:incrementPercent()
 
 light = Light.create()
 light:setId(1)
-	inc()
+	forest1splash:incrementPercent()
 light:enable()
-	inc()
+	forest1splash:incrementPercent()
 light:setType(2)
-	inc()
+	forest1splash:incrementPercent()
 light:setDiffuse(color.new(0,0,0))
-	inc()
+	forest1splash:incrementPercent()
 light:setAmbient(color.new(255,255,255))
-	inc()
-light.position:setPosition(0,5,0)
-	inc()
+	forest1splash:incrementPercent()
+light.position:setPosition(0,10,0)
+	forest1splash:incrementPercent()
 light:update()
-	inc()
+	forest1splash:incrementPercent()
 
 controls.analogtodigital(50)
-	inc()
+	forest1splash:incrementPercent()
 	
 forest1splash:fadeOut()
 forest1splash:clearSplash()
@@ -75,6 +74,7 @@ forest1splash:clearSplash()
 world.update()
 
 while true do
+	screen.clear(color.new(0, 0, 61))
 	controls.read()
 	
 	world.update()

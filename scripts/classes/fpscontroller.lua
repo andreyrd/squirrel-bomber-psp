@@ -1,84 +1,64 @@
-FPSController = {}
-FPSController.__index = FPSController
+TPSController = {}
+TPSController.__index = TPSController
 
-function FPSController.create()
-	local fps = {}
-	setmetatable(fps, FPSController)
+function TPSController.create(model)
+	local tps = {}
+	setmetatable(tps, TPSController)
 	
-	fps.keys = Keys.create()
 	
-	fps.camera = Camera.create()
-	fps.position = Vector.create()
-	fps.position:setPosition(0, 0, 0)
-	fps.position:setRotation(0, 0, 0)
-	fps.collider = CollisionData.create()
-	fps.collider:setData({{-1, -1, -1}, {1, 1, 1}})
-	fps.collisionObjects = {}
-	fps.bounds = 10
-	fps.moveSpeed = 0.1
-	fps.lookSpeed = 3
+	tps.object = Object.create(model)
 	
-	return fps
+	tps.camera = Camera.create()
+	tps.camera.position:setPosition(1, 13, 0)
+	tps.cameraCollider = CollisionData.create()
+	
+	tps.moveSpeed = 5
+	tps.cameraSpeed = 0.12
+	
+	return tps
 end
 
-function FPSController:addCollisionObject(obj)
-	table.insert(self.collisionObjects, obj)
-end
 
-function FPSController:setCollisionObjects(objs)
-	for a = 1, #objs do
-		table.insert(self.collisionobjects, objs[a])
-	end
-end
-
-function FPSController:setMoveSpeed(speed)
+function TPSController:setModeSpeed(speed)
 	self.moveSpeed = speed
 end
 
-function FPSController:setLookSpeed(speed)
-	self.lookSpeed = speed
+function TPSController:setCameraSpeed(speed)
+	self.cameraSpeed = speed
 end
 
-function FPSController:setBounds(bound)
-	self.bounds = bound
-end
-
-function FPSController:update()
-	--First get lookat
-	self.camera.position:setPosition(self.position.position[1], self.position.position[2], self.position.position[3])
-	self.camera.position:setRotation(self.position.rotation[1], self.position.rotation[2], 0)
-	self.camera:lookAtRotation()
+function TPSController:update()
 	
-	--Check controls.
-	if self.keys.left() then
-		self.position.rotation[1] = self.position.rotation[1] - self.lookSpeed
-	end
-	if self.keys.right() then
-		self.position.rotation[1] = self.position.rotation[1] + self.lookSpeed
+	--Fix self.camera Angle:
+	self.camera.position:rotateTowards(self.object.position)
+	self.self.camera:lookAtPosition(self.object.position)
+	
+	--Move self.camera to player, if necessary
+	--Move self.camera towards Player
+	local Dist = self.object.position:getDistanceTo(self.camera.position)
+	if Dist > 17 then	
+		self.camera.position:moveTowards(self.object.position, self.cameraSpeed, {true, false, true})
 	end
 	
-	if self.keys.up() then
-		self.position.rotation[2] = self.position.rotation[2] - self.lookSpeed
-	end
-	if self.keys.down() then
-		self.position.rotation[2] = self.position.rotation[2] + self.lookSpeed
-	end
+	--Movement
+	CAngle = self.camera.position.rotation
 	
-	--Now I know :P
-	local PPos = self.position.position
-	local PRot = self.position.rotation
-	
-	if self.keys.triangle() then
-		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1])) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1])) * self.moveSpeed)
+	if controls.left() then
+		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(270)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
 	end
-	if self.keys.cross() then
-		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 180)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 180)) * self.moveSpeed)
+	if controls.right() then
+		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(90)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
 	end
-	
-	if self.keys.circle() then
-		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 90)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 90)) * self.moveSpeed)
+	if controls.up() then
+		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1]) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1]) / 5)
 	end
-	if self.keys.circle() then
-		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 270)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 270)) * self.moveSpeed)
+	if controls.down() then
+		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(180)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(180)) / 5)
+	end
+	if controls.l() then
+		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (270)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
+	end
+	if controls.r() then
+		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (90)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
 	end
 end
