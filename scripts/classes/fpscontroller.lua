@@ -1,14 +1,16 @@
 FPSController = {}
 FPSController.__index = FPSController
 
-function FPSController.create(keys)
+function FPSController.create()
 	local fps = {}
 	setmetatable(fps, FPSController)
 	
-	fps.keys = keys
+	fps.keys = Keys.create()
 	
 	fps.camera = Camera.create()
 	fps.position = Vector.create()
+	fps.position:setPosition(0, 0, 0)
+	fps.position:setRotation(0, 0, 0)
 	fps.collider = CollisionData.create()
 	fps.collider:setData({{-1, -1, -1}, {1, 1, 1}})
 	fps.collisionObjects = {}
@@ -48,19 +50,35 @@ function FPSController:update()
 	self.camera:lookAtRotation()
 	
 	--Check controls.
-	if self.keys.square() then
+	if self.keys.left() then
 		self.position.rotation[1] = self.position.rotation[1] - self.lookSpeed
 	end
-	if self.keys.circle() then
+	if self.keys.right() then
 		self.position.rotation[1] = self.position.rotation[1] + self.lookSpeed
 	end
 	
-	if self.keys.cross() then
+	if self.keys.up() then
 		self.position.rotation[2] = self.position.rotation[2] - self.lookSpeed
 	end
-	if self.keys.triangle() then
-		self.position.rotaiton[2] = self.position.rotation[2] + self.lookSpeed
+	if self.keys.down() then
+		self.position.rotation[2] = self.position.rotation[2] + self.lookSpeed
 	end
 	
-	--Haven't figured out how I want to do movement yet :/
+	--Now I know :P
+	local PPos = self.position.position
+	local PRot = self.position.rotation
+	
+	if self.keys.triangle() then
+		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1])) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1])) * self.moveSpeed)
+	end
+	if self.keys.cross() then
+		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 180)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 180)) * self.moveSpeed)
+	end
+	
+	if self.keys.circle() then
+		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 90)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 90)) * self.moveSpeed)
+	end
+	if self.keys.circle() then
+		self.position:setPosition(PPos[1] + math.cos(math.rad(PRot[1] + 270)) * self.moveSpeed, PPos[2], PPos[3] + math.sin(math.rad(PRot[1] + 270)) * self.moveSpeed)
+	end
 end
