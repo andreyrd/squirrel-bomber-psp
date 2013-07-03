@@ -12,7 +12,7 @@ Cam = Camera.create()
 Cam.position:setPosition(1, 13, 0)
 	forest1splash:incrementPercent()
 
-TreeModel = model.load("objects/treebase.obj")
+TreeModel = model.load("objects/treebase.obj", 0.15, color.new(0, 0, 0))
 	forest1splash:incrementPercent()
 TreeMap = {{-30,0,0},{30,0,0},{0,0,30}}
 Trees = {}
@@ -32,7 +32,7 @@ Floor.position:setPosition(2, 0, 0)
 Floor:update()
 	forest1splash:incrementPercent()
 	
-AcornObject = Object.create(model.load("objects/acorn.obj"))
+AcornObject = Object.create(model.load("objects/acorn.obj", 0.15, color.new(0, 0, 0)))
 	forest1splash:incrementPercent()
 AcornObject.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
 	forest1splash:incrementPercent()
@@ -135,10 +135,11 @@ while true do
 		
 	end
 	
-	screen.print(0, 2, "Distance to Player: " .. Dist, color.new(255, 255, 255))
-	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
-	screen.print(0, 32, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
-	screen.print(0, 48, "Angle to player: " .. math.deg(CAngle[1]), color.new(255, 255, 255))
+	screen.print(0, 2, "FPS: " .. screen.fps(), color.new(255, 255, 255))
+	screen.print(0, 16, "Distance to Player: " .. Dist, color.new(255, 255, 255))
+	screen.print(0, 32, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
+	screen.print(0, 48, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
+	screen.print(0, 64, "Angle to player: " .. math.deg(CAngle[1]), color.new(255, 255, 255))
 	
 	screen.flip()
 	screen.waitvblank()
