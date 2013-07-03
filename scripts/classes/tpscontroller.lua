@@ -10,7 +10,7 @@ function TPSController.create(model)
 	
 	tps.camera = Camera.create()
 	tps.camera.position:setPosition(1, 13, 0)
-	tps.cameraCollider = CollisionData.create()
+	tps.cameraCollider = CollisionData.create({{-1, -1, -1},{1, 1, 1}})
 	
 	tps.moveSpeed = 5
 	tps.cameraSpeed = 0.12
@@ -28,6 +28,7 @@ function TPSController:setCameraSpeed(speed)
 end
 
 function TPSController:update()
+   self.cameraCollider.position.position = self.camera.position.position -- accessing variable is OK since we won't be stepBack'ing the collider ;)
 	
 	--Fix Camera Angle:
 	self.camera.position:rotateTowards(self.object.position)

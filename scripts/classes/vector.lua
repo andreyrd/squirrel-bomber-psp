@@ -9,8 +9,8 @@ function Vector.create(position, rotation)
 	
 	vec.position = position or {}
 	vec.rotation = rotation or {}
-	vec.lposition = nil -- Last position/rotation, used for fancy collision stuff :)
-	vec.lrotation = nil
+	vec.lposition = {} -- Last position/rotation, used for fancy collision stuff :)
+	vec.lrotation = {}
 	
 	return vec
 end
@@ -80,11 +80,15 @@ function Vector:moveTowards(vector, speed, Tr)
 	end
 end
 
-function Vector:stepBack(Tr) -- Steps back to lpositon/lrotation, pass table of 6 true/false to specify which axes to stepback
-	if Tr[1] then self.position[1] = self.lposition[1] end
-	if Tr[2] then self.position[2] = self.lposition[2] end
-	if Tr[3] then self.position[3] = self.lposition[3] end
-	if Tr[4] then self.rotation[1] = self.lrotation[1] end
-	if Tr[5] then self.rotation[2] = self.lrotation[2] end
-	if Tr[6] then self.rotation[3] = self.lrotation[3] end
+function Vector:stepBack(Tr) -- Steps back to lpositon/lrotation
+	if Tr[1] then
+		self.position[1] = self.lposition[1]
+		self.position[2] = self.lposition[2]
+		self.position[3] = self.lposition[3]
+	end
+	if Tr[2] then
+		self.rotation[1] = self.lrotation[1]
+		self.rotation[2] = self.lrotation[2]
+		self.rotation[3] = self.lrotation[3]
+	end
 end

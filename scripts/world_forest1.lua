@@ -104,6 +104,31 @@ while true do
 		error("USB Mode")
 	end
 	
+	collision_cam = 0
+	collision_plyr = 0 -- Just testing these
+	
+	for a = 1, #Trees, 1 do
+		if Player.object.collider:checkCollision(Trees[a].collider) then
+			collision_plyr = 1
+			break
+		end
+	end
+	
+	for a = 1, #Trees, 1 do
+		if Player.cameraCollider:checkCollision(Trees[a].collider) then
+			collision_cam = 1
+			break
+		end
+	end
+	
+	if collision_cam == 1 then
+		Player.camera.position:stepBack({true, true})
+	end
+	
+	if collision_plyr == 1 then
+		Player.object.position:stepBack({true, false})
+	end
+	
 	screen.flip()
 	screen.waitvblank()
 end
