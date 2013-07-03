@@ -13,7 +13,7 @@ Trees = {}
 for a = 1, #TreeMap, 1 do
 	table.insert(Trees, Object.create(TreeModel))
 	Trees[a].position:setPosition(TreeMap[a][1], TreeMap[a][2], TreeMap[a][3])
-	Trees[a].collider:setData({{-(10)/2, 0, -(10)/2}, {10, 10, 10}})
+	Trees[a].collider:setData({{-(10)/2, 0, -(10)/2}, {10, 15, 10}})
 	Trees[a]:update()
 end
 	forest1splash:incrementPercent()
@@ -31,6 +31,7 @@ Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.25
 	forest1splash:incrementPercent()
 Player.object:update()
 	forest1splash:incrementPercent()
+Player:setCameraCollider({{-2, 0, -2}, {2, 2, 2}})
 	
 Atmosphere = Environment.create()
 	forest1splash:incrementPercent()
@@ -87,6 +88,7 @@ while true do
 	
 	APos = Player.object.position.position
 	BPos = Player.camera.position.position
+	CCPos = Player.cameraCollider.position.position
 	
 	Floor:update()
 	Floor.model:blit()
@@ -99,6 +101,8 @@ while true do
 	screen.print(0, 2, "FPS: " .. screen.fps(), color.new(255, 255, 255))
 	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
 	screen.print(0, 30, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
+	screen.print(0, 44, "Camera Collider: (" .. CCPos[1] ..", " .. CCPos[2] .. ", " .. CCPos[3] .. ")", color.new(255, 255, 255))
+	screen.print(0, 58, "Collision:", color.new(255, 255, 255))
 	
 	if controls.select() then
 		error("USB Mode")
@@ -123,10 +127,12 @@ while true do
 	
 	if collision_cam == 1 then
 		Player.camera.position:stepBack({true, true})
+		screen.print(20, 58, "Camera", color.new(255,255,255))
 	end
 	
 	if collision_plyr == 1 then
 		Player.object.position:stepBack({true, false})
+		screen.print(40, 58, "Player", color.new(255,255,255))
 	end
 	
 	screen.flip()
