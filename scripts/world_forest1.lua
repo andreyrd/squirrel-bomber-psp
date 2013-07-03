@@ -31,7 +31,6 @@ Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.25
 	forest1splash:incrementPercent()
 Player.object:update()
 	forest1splash:incrementPercent()
-Player:setCameraCollider({{-2, 0, -2}, {2, 2, 2}})
 	
 Atmosphere = Environment.create()
 	forest1splash:incrementPercent()
@@ -118,21 +117,9 @@ while true do
 		end
 	end
 	
-	for a = 1, #Trees, 1 do
-		if Player.cameraCollider:checkCollision(Trees[a].collider) then
-			collision_cam = 1
-			break
-		end
-	end
-	
-	if collision_cam == 1 then
-		Player.camera.position:stepBack({true, true})
-		screen.print(20, 58, "Camera", color.new(255,255,255))
-	end
-	
 	if collision_plyr == 1 then
 		Player.object.position:stepBack({true, false})
-		screen.print(40, 58, "Player", color.new(255,255,255))
+		screen.print(80, 58, "Player", color.new(255,255,255))
 	end
 	
 	screen.flip()
