@@ -75,100 +75,104 @@ function TPSController:update()
 	--Movement
 	CAngle = self.camera.position.rotation
 	
+	local Delta = Vector.create()
+	Delta:setPosition(self.object.position.position[1], self.object.position.position[2], self.object.position.position[3])
+	
+	local Collision = false
 	
 	if controls.left() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(270)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
 		
-		local COL = false
+		Collision = false
 		for a = 1, #self.colliders do
 			if self.colliders[a].Type == 1 then
 				if self.object.collider:checkCollision(self.colliders[a]) then
-					COL = true
+					Collision = true
 				end
 			else
 				for b = 1, 4 do
 					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
-						COL = true
+						Collision = true
 						break
 					end
 				end
 			end
 		end
-		
-		if COL then
-			--self.object.position:stepBack({true, false})
+		if Collision then
+			self.object.position:stepBack({true, false})
+			self.object:update()
 		end
 	end
 	
 	if controls.right() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(90)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
 		
-		local COL = false
+		Collision = false
 		for a = 1, #self.colliders do
 			if self.colliders[a].Type == 1 then
 				if self.object.collider:checkCollision(self.colliders[a]) then
-					COL = true
+					Collision = true
 				end
 			else
 				for b = 1, 4 do
 					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
-						COL = true
+						Collision = true
 						break
 					end
 				end
 			end
 		end
-		
-		if COL then
-			--self.object.position:stepBack({true, false})
+		if Collision then
+			self.object.position:stepBack({true, false})
+			self.object:update()
 		end
 	end
 	
 	if controls.up() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1]) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1]) / 5)
 		
-		local COL = false
+		Collision = false
 		for a = 1, #self.colliders do
 			if self.colliders[a].Type == 1 then
 				if self.object.collider:checkCollision(self.colliders[a]) then
-					COL = true
+					Collision = true
 				end
 			else
 				for b = 1, 4 do
 					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
-						COL = true
+						Collision = true
 						break
 					end
 				end
 			end
 		end
-		
-		if COL then
-			--self.object.position:stepBack({true, false})
+		if Collision then
+			self.object.position:stepBack({true, false})
+			self.object:update()
 		end
 	end
 	
 	if controls.down() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(180)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(180)) / 5)
 		
-		local COL = false
+		Collision = false
 		for a = 1, #self.colliders do
 			if self.colliders[a].Type == 1 then
 				if self.object.collider:checkCollision(self.colliders[a]) then
-					COL = true
+					Collision = true
 				end
 			else
 				for b = 1, 4 do
 					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
-						COL = true
+						Collision = true
 						break
 					end
 				end
 			end
 		end
-		
-		if COL then
-			--self.object.position:stepBack({true, false})
+		if Collision then
+			self.object.position:stepBack({true, false})
+			self.object:update()
 		end
 	end
 	
