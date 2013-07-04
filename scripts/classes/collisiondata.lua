@@ -17,7 +17,30 @@ function CollisionData.create(Data)
 	setmetatable(col, CollisionData)
 	col.data = Data or nil
 	col.position = Vector.create()
+	col.radius = nil
+	col.Type = 1 --1 = box, 2 = cylindrical.
+	
+	col.extreme = {}
+	for a = 1, 4 do
+		col.extreme[a] = Vector.create()
+	end
+	
 	return col
+end
+
+function CollisionData:findExtreme(vector, Fw, Bw, Rw, Lw)
+	self.extreme[1]:setPosition(vector.position[1] + math.cos(vector.rotation[1]) * Fw, vector.position[2], vector.position[3] + math.sin(vector.rotation[1]) * Fw)
+	self.extreme[2]:setPosition(vector.position[1] + math.cos(vector.rotation[1] + math.rad(180)) * Bw, vector.position[2], vector.position[3] + math.sin(vector.rotation[1] + math.rad(180)) * Bw)
+	self.extreme[3]:setPosition(vector.position[1] + math.cos(vector.rotation[1] + math.rad(90)) * Rw, vector.position[2], vector.position[3] + math.sin(vector.rotation[1] + math.rad(90)) * Rw)
+	self.extreme[4]:setPosition(vector.position[1] + math.cos(vector.rotation[1] + math.rad(270)) * Lw, vector.position[2], vector.position[3] + math.sin(vector.rotation[1] + math.rad(270)) * Lw)
+end
+
+function CollisionData:setType(n)
+	self.Type = n
+end
+
+function CollisionData:setRadius(radd)
+	self.radius = radd
 end
 
 function CollisionData:setData(Data)
@@ -39,4 +62,13 @@ function CollisionData:checkCollision(Collider)
 	end
 	
 	return false
+end
+
+function CollisionData:capsuleCollision(vertice)
+	local d = vertice:getDistanceTo(self.position)
+	if math.abs(d) < self.radius then
+		return true, d
+	else
+		return false, d
+	end
 end

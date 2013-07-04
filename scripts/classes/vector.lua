@@ -9,8 +9,8 @@ function Vector.create(position, rotation)
 	
 	vec.position = position or {}
 	vec.rotation = rotation or {}
-	vec.lposition = {} -- Last position/rotation, used for fancy collision stuff :)
-	vec.lrotation = {}
+	vec.lposition = {0, 0, 0} -- Last position/rotation, used for fancy collision stuff :)
+	vec.lrotation = {0, 0, 0}
 	
 	return vec
 end
@@ -86,6 +86,7 @@ function Vector:stepBack(Tr) -- Steps back to lpositon/lrotation
 		self.position[2] = self.lposition[2]
 		self.position[3] = self.lposition[3]
 	end
+	
 	if Tr[2] then
 		self.rotation[1] = self.lrotation[1]
 		self.rotation[2] = self.lrotation[2]

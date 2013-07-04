@@ -1,9 +1,22 @@
 --[[ This is Messy. It needs organized ]]--
 
+
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
 forest1splash:setObjects(27)
+
+Player = TPSController.create(model.load("objects/acorn.obj", 0.15, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
+Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
+	forest1splash:incrementPercent()
+Player.object:update()
+	forest1splash:incrementPercent()
+Player:setForwardWidth(4)
+Player:setBackwardWidth(4)
+Player:setRightWidth(4)
+Player:setLeftWidth(4)
+	
 
 TreeModel = model.load("objects/treebase.obj", 0.15, color.new(0, 0, 0))
 	forest1splash:incrementPercent()
@@ -13,8 +26,13 @@ Trees = {}
 for a = 1, #TreeMap, 1 do
 	table.insert(Trees, Object.create(TreeModel))
 	Trees[a].position:setPosition(TreeMap[a][1], TreeMap[a][2], TreeMap[a][3])
+	Trees[a].collider:setType(2) -- Cylinder
 	Trees[a].collider:setData({{-(10)/2, 0, -(10)/2}, {10, 15, 10}})
+	Trees[a].collider:setRadius(6.1)
 	Trees[a]:update()
+	
+	--Add to collider:
+	Player:addCollider(Trees[a].collider)
 end
 	forest1splash:incrementPercent()
 
@@ -23,13 +41,6 @@ Floor = Object.create(model.load("objects/forestfloor.obj"))
 Floor.position:setPosition(2, 0, 0)
 	forest1splash:incrementPercent()
 Floor:update()
-	forest1splash:incrementPercent()
-
-Player = TPSController.create(model.load("objects/acorn.obj", 0.15, color.new(0, 0, 0)))
-	forest1splash:incrementPercent()
-Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
-	forest1splash:incrementPercent()
-Player.object:update()
 	forest1splash:incrementPercent()
 	
 Atmosphere = Environment.create()
@@ -80,14 +91,13 @@ while true do
 	world.update()
 	
 	Player.camera:setView()
-	Player:update()
 	
 	Player.object:update()
 	Player.object.model:blit()
 	
 	APos = Player.object.position.position
 	BPos = Player.camera.position.position
-	CCPos = Player.cameraCollider.position.position
+	--CCPos = Player.cameraCollider.position.position -- Should be the same as the camera position -_-
 	
 	Floor:update()
 	Floor.model:blit()
@@ -100,26 +110,11 @@ while true do
 	screen.print(0, 2, "FPS: " .. screen.fps(), color.new(255, 255, 255))
 	screen.print(0, 16, "Player: (" .. APos[1] .. ", " .. APos[2] .. ", " .. APos[3] .. ")", color.new(255, 255, 255))
 	screen.print(0, 30, "Camera: (" .. BPos[1] .. ", " .. BPos[2] .. ", " .. BPos[3] .. ")", color.new(255, 255, 255))
-	screen.print(0, 44, "Camera Collider: (" .. CCPos[1] ..", " .. CCPos[2] .. ", " .. CCPos[3] .. ")", color.new(255, 255, 255))
-	screen.print(0, 58, "Collision:", color.new(255, 255, 255))
+	
+	Player:update()
 	
 	if controls.select() then
 		error("USB Mode")
-	end
-	
-	collision_cam = 0
-	collision_plyr = 0 -- Just testing these
-	
-	for a = 1, #Trees, 1 do
-		if Player.object.collider:checkCollision(Trees[a].collider) then
-			collision_plyr = 1
-			break
-		end
-	end
-	
-	if collision_plyr == 1 then
-		Player.object.position:stepBack({true, false})
-		screen.print(80, 58, "Player", color.new(255,255,255))
 	end
 	
 	screen.flip()
