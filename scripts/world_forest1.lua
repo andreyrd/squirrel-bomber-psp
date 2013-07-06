@@ -27,8 +27,8 @@ for a = 1, #TreeMap, 1 do
 	table.insert(Trees, Object.create(TreeModel))
 	Trees[a].position:setPosition(TreeMap[a][1], TreeMap[a][2], TreeMap[a][3])
 	Trees[a].collider:setType(2) -- Cylinder
-	Trees[a].collider:setData({{-(10)/2, 0, -(10)/2}, {10, 15, 10}})
-	Trees[a].collider:setRadius(6.1)
+	Trees[a].collider:setData({{-(9)/2, 0, -(9)/2}, {9, 15, 9}})
+	Trees[a].collider:setRadius(5.8)
 	Trees[a]:update()
 	
 	--Add to collider:
