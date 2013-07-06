@@ -81,6 +81,7 @@ function Vector:moveTowards(vector, speed, Tr)
 end
 
 function Vector:stepBack(Tr) -- Steps back to lpositon/lrotation
+	delta = {}
 	if Tr[1] then
 		self.position[1] = self.lposition[1]
 		self.position[2] = self.lposition[2]

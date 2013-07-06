@@ -56,9 +56,6 @@ function TPSController:addCollider(col)
 end
 
 function TPSController:update()
-	--Update the extremes:
-	self.object.collider:findExtreme(self.object.position, self.fw, self.bw, self.rw, self.lw)
-	
     self.cameraCollider.position.position = self.camera.position.position -- accessing variable is OK since we won't be stepBack'ing the collider ;)
 	
 	--Fix Camera Angle:
@@ -66,7 +63,6 @@ function TPSController:update()
 	self.camera:lookAtPosition(self.object.position)
 	
 	--Move camera to player, if necessary
-	--Move Cam towards Player
 	local Dist = self.object.position:getDistanceTo(self.camera.position)
 	if Dist > 17 then	
 		self.camera.position:moveTowards(self.object.position, self.cameraSpeed, {true, false, true})
@@ -82,113 +78,96 @@ function TPSController:update()
 	
 	if controls.left() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(270)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
-		
-		Collision = false
-		for a = 1, #self.colliders do
-			if self.colliders[a].Type == 1 then
-				if self.object.collider:checkCollision(self.colliders[a]) then
-					Collision = true
-				end
-			else
-				for b = 1, 4 do
-					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+			self.object:update()
+			self.object.collider:findExtreme(self.object.position, self.fw, self.bw, self.rw, self.lw)
+			Collision = false
+			for a = 1, #self.colliders do
+				if self.colliders[a].Type == 1 then
+					if self.object.collider:checkCollision(self.colliders[a]) then
 						Collision = true
-						break
+					end
+				else
+					for b = 1, 4 do
+						if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+							Collision = true
+							break
+						end
 					end
 				end
 			end
-		end
-		if Collision then
-			self.object.position:stepBack({true, false})
-			self.object:update()
-		end
-	end
-	
-	if controls.right() then
+			if Collision then
+				self.object.position:stepBack({true, false})
+				self.object:update()
+			end
+	elseif controls.right() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(90)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
-		
-		Collision = false
-		for a = 1, #self.colliders do
-			if self.colliders[a].Type == 1 then
-				if self.object.collider:checkCollision(self.colliders[a]) then
-					Collision = true
-				end
-			else
-				for b = 1, 4 do
-					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+			self.object:update()
+			self.object.collider:findExtreme(self.object.position, self.fw, self.bw, self.rw, self.lw)
+			Collision = false
+			for a = 1, #self.colliders do
+				if self.colliders[a].Type == 1 then
+					if self.object.collider:checkCollision(self.colliders[a]) then
 						Collision = true
-						break
+					end
+				else
+					for b = 1, 4 do
+						if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+							Collision = true
+							break
+						end
 					end
 				end
 			end
-		end
-		if Collision then
-			self.object.position:stepBack({true, false})
-			self.object:update()
-		end
-	end
-	
-	if controls.up() then
+			if Collision then
+				self.object.position:stepBack({true, false})
+				self.object:update()
+			end
+	elseif controls.up() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1]) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1]) / 5)
-		
-		Collision = false
-		for a = 1, #self.colliders do
-			if self.colliders[a].Type == 1 then
-				if self.object.collider:checkCollision(self.colliders[a]) then
-					Collision = true
-				end
-			else
-				for b = 1, 4 do
-					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+			self.object:update()
+			self.object.collider:findExtreme(self.object.position, self.fw, self.bw, self.rw, self.lw)
+			Collision = false
+			for a = 1, #self.colliders do
+				if self.colliders[a].Type == 1 then
+					if self.object.collider:checkCollision(self.colliders[a]) then
 						Collision = true
-						break
+					end
+				else
+					for b = 1, 4 do
+						if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+							Collision = true
+							break
+						end
 					end
 				end
 			end
-		end
-		if Collision then
-			self.object.position:stepBack({true, false})
-			self.object:update()
-		end
-	end
-	
-	if controls.down() then
+			if Collision then
+				self.object.position:stepBack({true, false})
+				self.object:update()
+			end
+	elseif controls.down() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(180)) / 5, self.object.position.position[2], self.object.position.position[3] + math.sin(CAngle[1] + math.rad(180)) / 5)
-		
-		Collision = false
-		for a = 1, #self.colliders do
-			if self.colliders[a].Type == 1 then
-				if self.object.collider:checkCollision(self.colliders[a]) then
-					Collision = true
-				end
-			else
-				for b = 1, 4 do
-					if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+			self.object:update()
+			self.object.collider:findExtreme(self.object.position, self.fw, self.bw, self.rw, self.lw)
+			Collision = false
+			for a = 1, #self.colliders do
+				if self.colliders[a].Type == 1 then
+					if self.object.collider:checkCollision(self.colliders[a]) then
 						Collision = true
-						break
+					end
+				else
+					for b = 1, 4 do
+						if self.colliders[a]:capsuleCollision(self.object.collider.extreme[b]) then
+							Collision = true
+							break
+						end
 					end
 				end
 			end
-		end
-		if Collision then
-			self.object.position:stepBack({true, false})
-			self.object:update()
-		end
-	end
-	
-	
-	--Debug Collision Testing:
-	Distances = {}
-	for a = 1, #self.colliders do
-		if self.colliders[a].Type == 2 then
-			for b = 1, 4 do
-				Sta, Pra = self.colliders[a]:capsuleCollision(self.object.collider.extreme[b])
-				Distances[b] = Pra
-				if Sta then
-					screen.print(0, 64 + b * 14 - 14, "Collision. Distance: " .. Distances[b] .. "  Tree: " .. a, color.new(255, 0, 0))
-				end
+			if Collision then
+				self.object.position:stepBack({true, false})
+				self.object:update()
 			end
-		end
 	end
 	
 	if controls.l() then
