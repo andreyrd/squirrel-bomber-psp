@@ -5,7 +5,6 @@ function TPSController.create(model)
 	local tps = {}
 	setmetatable(tps, TPSController)
 	
-	
 	tps.object = Object.create(model)
 	
 	tps.camera = Camera.create()
