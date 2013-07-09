@@ -1,5 +1,5 @@
 cam = Camera.create()
-cam.position:setPosition(10, 10, 10)
+cam.position:setPosition(5, 5, 5)
 
 squirrel = SquirrelAnim.create()
 squirrel.position:setPosition(0, 0, 0)
@@ -52,6 +52,13 @@ while true do
 	end
 	if controls.r() then
 		cam.position:setPosition(cam.position.position[1] + math.cos(CAngle[1] + math.rad (90)) / 5, cam.position.position[2], cam.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
+	end
+	
+	if controls.left() then
+		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] - 0.05, squirrel.position.rotation[3])
+	end
+	if controls.right() then
+		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] + 0.05, squirrel.position.rotation[3])
 	end
 	
 	screen.flip()
