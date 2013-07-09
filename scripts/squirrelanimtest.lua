@@ -55,10 +55,10 @@ while true do
 	end
 	
 	if controls.left() then
-		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] - 0.05, squirrel.position.rotation[3])
+		squirrel:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] - 0.05, squirrel.position.rotation[3])
 	end
 	if controls.right() then
-		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] + 0.05, squirrel.position.rotation[3])
+		squirrel:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] + 0.05, squirrel.position.rotation[3])
 	end
 	
 	screen.flip()

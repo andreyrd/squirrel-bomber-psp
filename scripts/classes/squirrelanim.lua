@@ -25,12 +25,19 @@ function SquirrelAnim:setSpeed(speed) -- takes same speed as TPS's moveSpeed (No
 	sa.speed = speed
 end
 
+function SquirrelAnim:setRotation(x, y, z)
+	self.position:setRotation(x, y, z)
+	self.deltapos_body:setRotation(x, y, z)
+	self.deltapos_fl:setRotation(x, y, z)
+	self.deltapos_bl:setRotation(x, y, z)
+end
+
 function SquirrelAnim:moveFrame()
 	if frame < 6 then
 		self.deltapos_body:setPosition(0, ((frame/5) * 0.6), 0)
-		self.deltapos_fl:setPosition(math.sin(self.position.rotation[1])*((frame/5)*0.3),
+		self.deltapos_fl:setPosition(math.sin(self.position.rotation[1])*((frame/5)*0.4),
 									 (frame/5)*(0.1),
-									 math.cos(self.position.rotation[1])*((frame/5)*0.3))
+									 math.cos(self.position.rotation[1])*((frame/5)*0.4))
 		self.deltapos_bl:setPosition(math.sin(self.position.rotation[1])*((frame/5)*-0.1),
 									 (frame/5)*(-0.03),
 									 math.cos(self.position.rotation[1])*((frame/5)*-0.1))
@@ -40,15 +47,27 @@ function SquirrelAnim:moveFrame()
 	end
 	if frame > 5 and frame < 11 then
 		self.deltapos_body:setPosition(0, (0.6 + ((frame-10)/5) * 0.1), 0)
-		self.deltapos_fl:setPosition(math.sin(self.position.rotation[1])*(0.3 - ((frame/5) * 0.05)),
-									 0.1 + ((frame/5)*(0.12)),
-									 math.cos(self.position.rotation[1])*(0.3 - ((frame/5) * 0.05)))
+		self.deltapos_fl:setPosition(math.sin(self.position.rotation[1])*(0.4 + ((frame/5) * 0.1)),
+									 0.1 + ((frame/5)*(0.25)),
+									 math.cos(self.position.rotation[1])*(0.4 + ((frame/5) * 0.1)))
 		self.deltapos_bl:setPosition(math.sin(self.position.rotation[1])*(-0.1 + ((frame/5) * -0.3)),
 									 -0.03 + ((frame/5)*(-0.04)),
 									 math.cos(self.position.rotation[1])*(-0.1 + ((frame/5) * -0.3)))
 		self.deltapos_body:setRotation(math.rad(-11 + ((frame/5) * -4)), 0, 0)
 		self.deltapos_fl:setRotation(math.rad(-21 + ((frame/5) * -7)), 0, 0)
 		self.deltapos_bl:setRotation(math.rad(5 + ((frame/5) * 10)), 0, 0)
+	end
+	if frame > 10 and frame < 16 then
+		self.deltapos_body:setPosition(0, 0.7, 0)
+		self.deltapos_fl:setPosition(math.sin(self.position.rotation[1])*(0.5 + ((frame/5) * 0.05)),
+									 0.35 + ((frame/5)*-0.02),
+									 math.cos(self.position.rotation[1])*(0.5 + ((frame/5) * 0.05)))
+		self.deltapos_bl:setPosition(math.sin(self.position.rotation[1])*(-0.4 + ((frame/5) * 0.2)),
+									 -0.07 + ((frame/5)*0.05),
+									 math.cos(self.position.rotation[1])*(-0.4 + ((frame/5) * 0.2)))
+		self.deltapos_body:setRotation(math.rad(-15 + ((frame/5) * 3)), 0, 0)
+		self.deltapos_fl:setRotation(math.rad(-28 + ((frame/5) * -4)), 0, 0)
+		self.deltapos_bl:setRotation(math.rad(15 + ((frame/5) * 3)), 0, 0)
 	end
 	if frame == 25 then
 		frame = 0
@@ -76,12 +95,12 @@ function SquirrelAnim:drawFrame()
 	self.backlegs.position:setPosition(self.position.position[1] + self.deltapos_bl.position[1],
 									   self.position.position[2] + self.deltapos_bl.position[2],
 									   self.position.position[3] + self.deltapos_bl.position[3])
-	self.body.position:setRotation(self.position.rotation[1] + math.abs(math.sin(self.deltapos_body.rotation[1])) - math.abs(math.sin(self.deltapos_body.rotation[3])),
+	self.body.position:setRotation(self.position.rotation[1] + self.deltapos_body.rotation[1],
 								   self.position.rotation[2] + self.deltapos_body.rotation[2],
-								   self.position.rotation[3] + math.abs(math.cos(self.deltapos_body.rotation[3])) - math.abs(math.cos(self.deltapos_body.rotation[1])))
+								   self.position.rotation[3] + self.deltapos_body.rotation[3])
 	self.frontlegs.position:setRotation(self.position.rotation[1] + self.deltapos_fl.rotation[1],
 										self.position.rotation[2] + self.deltapos_fl.rotation[2],
-										self.frontlegs.position.rotation[3] + self.deltapos_fl.rotation[3])
+										self.position.rotation[3] + self.deltapos_fl.rotation[3])
 	self.backlegs.position:setRotation(self.position.rotation[1] + self.deltapos_bl.rotation[1],
 									   self.position.rotation[2] + self.deltapos_bl.rotation[2],
 									   self.position.rotation[3] + self.deltapos_bl.rotation[3])
