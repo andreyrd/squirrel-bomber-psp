@@ -15,6 +15,15 @@ function Vector.create(position, rotation)
 	return vec
 end
 
+function Vector:addToPosition(x, y, z)
+	self.lposition[1] = self.position[1]
+	self.lposition[2] = self.position[2]
+	self.lposition[3] = self.position[3]
+	self.position[1] = self.position[1] + x
+	self.position[2] = self.position[2] + y
+	self.position[3] = self.position[3] + z
+end
+
 function Vector:setPosition(x, y, z)
 	self.lposition[1] = self.position[1]
 	self.lposition[2] = self.position[2]
@@ -22,6 +31,15 @@ function Vector:setPosition(x, y, z)
 	self.position[1] = x
 	self.position[2] = y
 	self.position[3] = z
+end
+
+function Vector:addToRotation(x, y, z)
+	self.lrotation[1] = self.rotation[1]
+	self.lrotation[2] = self.rotation[2]
+	self.lrotation[3] = self.rotation[3]
+	self.rotation[1] = self.rotation[1] + x
+	self.rotation[2] = self.rotation[2] + y
+	self.rotation[3] = self.rotation[3] + z
 end
 
 function Vector:setRotation(x, y, z)
