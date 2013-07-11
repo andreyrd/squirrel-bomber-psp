@@ -7,8 +7,8 @@ mainmenu:addItem('FPSController Test', 'scripts/fpstest.lua')
 mainmenu:addItem('forest1', 'scripts/world_forest1.lua')
 mainmenu:addItem('Nest', 'scripts/world_nest.lua')
 mainmenu:addItem('SquirAnim', 'scripts/squirrelanimtest.lua')
+mainmenu:addItem('SquirAnim2', 'scripts/squirrelanimtest2.lua')
 mainmenu:addItem('About', 'scripts/about.lua')
-mainmenu:addItem('Tst', 'scripts/about.lua')
 mainmenu:addItem('Reset', 'scripts/reset.lua')
 
 while true do

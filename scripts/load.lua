@@ -6,7 +6,7 @@ loadsplash:setFadeSpeed(8.5)
 
 loadsplash:setSplash(image.load('images/splash/neosplash.png'))
 
-loadsplash:setObjects(15)
+loadsplash:setObjects(18)
 
 --Load Classes:
 dofile("scripts/classes/vector.lua")
@@ -39,6 +39,12 @@ loadsplash:incrementPercent()
 dofile("scripts/classes/menu.lua")
 loadsplash:incrementPercent()
 dofile("scripts/classes/credits.lua")
+loadsplash:incrementPercent()
+dofile("scripts/classes/animationobject.lua")
+loadsplash:incrementPercent()
+dofile("scripts/classes/multianimation.lua")
+loadsplash:incrementPercent()
+dofile("scripts/classes/animationmanager.lua")
 loadsplash:incrementPercent()
 
 loadsplash:fadeOut()
