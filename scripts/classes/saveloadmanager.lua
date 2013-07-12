@@ -20,8 +20,11 @@ function SaveLoadManager:saveDialog(savedata)
 	self.curconfig = savetable[2]
 	self.curdata = savetable[3]
 	
-	savedata.save(self.curdest, self.curconfig, self.curdata)
+	savedata:save(self.curdest, self.curconfig, self.curdata)
 end
 
 function SaveLoadManager:loadDialog()
+	a,b,c = savedata.load({self.gameid,nil})
 	
+	return {b,c}
+end

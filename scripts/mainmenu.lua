@@ -9,6 +9,7 @@ mainmenu:addItem('Nest', 'scripts/world_nest.lua')
 mainmenu:addItem('SquirAnim', 'scripts/squirrelanimtest.lua')
 mainmenu:addItem('SquirAnim2', 'scripts/squirrelanimtest2.lua')
 mainmenu:addItem('About', 'scripts/about.lua')
+mainmenu:addItem('savetest', 'scripts/savetest.lua')
 mainmenu:addItem('Reset', 'scripts/reset.lua')
 
 while true do

@@ -14,7 +14,7 @@ function GameSave.create()
 	
 	save.title = "Squirrel Bomber"
 	save.subtitle = "Save data for Squirrel Bomber."
-	save.details = nil
+	save.details = "Testing"
 	save.savetext = nil
 	
 	return save
@@ -32,16 +32,15 @@ function GameSave:setName(name)
 	self.config[4] = self.savetext
 end
 
-function GameSave:saveIn(dest, config, data) -- Used by SaveLoadManager
-	self.dest = dest
-	self.config = config
-	self.data = data
+function GameSave:saveIn(tablein) -- Used by SaveLoadManager
+	self.dest = tablein[1]
+	self.data = tablein[2]
 	
 	self.savename = dest[2]
 	
-	self.details = config[3]
-	self.savetext = config[4]
+	self.savetext = self.savename
 end
+
 
 function GameSave:saveOut() -- Used by SaveLoadManager
 	dest = self.dest
