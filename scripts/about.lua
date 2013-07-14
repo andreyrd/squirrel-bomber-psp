@@ -1,7 +1,7 @@
 -- We'll just have credits roll, exitable by cross, speed up by up/down Dpad
 
 about = Credits.create()
-about:setDirection(-1)
+about:setDirection(1)
 
 about:addItem("2D Graphics Design")
 about:addItem("frankdrey")
@@ -26,6 +26,7 @@ about:addItem("For regular updates and suggestions!")
 about:addItem("")
 about:addItem("")
 about:addItem("Thanks for Playing!")
+about:calcInitPosY()
 
 while true do
 	controls.read()
@@ -47,7 +48,7 @@ while true do
 		break
 	end
 	
-	if about:doneScrolling() == true then
+	if about:doneScrolling() then
 		break
 	end
 	
