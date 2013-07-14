@@ -25,13 +25,6 @@ function SquirrelAnim:setSpeed(speed) -- takes same speed as TPS's moveSpeed (No
 	sa.speed = speed
 end
 
-function SquirrelAnim:setRotation(x, y, z)
-	self.position:setRotation(x, y, z)
-	self.deltapos_body:setRotation(x, y, z)
-	self.deltapos_fl:setRotation(x, y, z)
-	self.deltapos_bl:setRotation(x, y, z)
-end
-
 function SquirrelAnim:moveFrame()
 	if frame < 6 then
 		self.deltapos_body:setPosition(0, ((frame/5) * 0.6), 0)
@@ -95,9 +88,9 @@ function SquirrelAnim:drawFrame()
 	self.backlegs.position:setPosition(self.position.position[1] + self.deltapos_bl.position[1],
 									   self.position.position[2] + self.deltapos_bl.position[2],
 									   self.position.position[3] + self.deltapos_bl.position[3])
-	self.body.position:setRotation(self.position.rotation[1] + self.deltapos_body.rotation[1],
+	self.body.position:setRotation(self.position.rotation[1] + self.deltapos_body.rotation[1]*math.sin(self.position.rotation[2]/4),
 								   self.position.rotation[2] + self.deltapos_body.rotation[2],
-								   self.position.rotation[3] + self.deltapos_body.rotation[3])
+								   self.position.rotation[3] + self.deltapos_body.rotation[3]*math.sin(self.position.rotation[2]/4))
 	self.frontlegs.position:setRotation(self.position.rotation[1] + self.deltapos_fl.rotation[1],
 										self.position.rotation[2] + self.deltapos_fl.rotation[2],
 										self.position.rotation[3] + self.deltapos_fl.rotation[3])

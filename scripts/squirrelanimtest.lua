@@ -38,8 +38,6 @@ while true do
 		squirrel:reset()
 	end
 	
-	squirrel:drawFrame()
-	
 	screen.print(0, 2, "FPS: " .. screen.fps(), color.new(255, 255, 255))
 	
 	if controls.select() then
@@ -55,11 +53,13 @@ while true do
 	end
 	
 	if controls.left() then
-		squirrel:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] - 0.05, squirrel.position.rotation[3])
+		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] - 0.01, squirrel.position.rotation[3])
 	end
 	if controls.right() then
-		squirrel:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] + 0.05, squirrel.position.rotation[3])
+		squirrel.position:setRotation(squirrel.position.rotation[1], squirrel.position.rotation[2] + 0.01, squirrel.position.rotation[3])
 	end
+	
+	squirrel:drawFrame()
 	
 	screen.flip()
 	screen.waitvblank()
