@@ -31,15 +31,15 @@ function MultiAnimation:play(id)
 	end
 end
 
-function MultiAnimation:draw()
+function MultiAnimation:blit()
 	--Why did I split these up? Lord knows...
 	if self.Type == 2 then
 		for a = 1, #self.Objects do
-			self.Objects[a]:draw()
+			self.Objects[a]:blit()
 		end
 	else
 		for a = 1, #self.Objects do
-			self.Objects[a]:draw()
+			self.Objects[a]:blit()
 		end
 	end
 end

@@ -6,7 +6,7 @@ BackLegsObj = Object.create(model.load("objects/squirrel_backlegs.obj", 0.1, col
 BackLegs = AnimationObject.create()
 
 BackLegs:setObject(BackLegsObj) --Link them together
-
+BackLegs:setSmoothing(10)
 --The Animation
 BackLegs:addTranslationStep({0.5, 0.2, 0.1}) --Move it a small amount
 BackLegs:addRotationStep({50, 30, 10}) --Rotate a little too.
@@ -66,10 +66,10 @@ while true do
 	end
 	
 	if controls.left() then
-		BackLegsObj:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] - 0.05, BackLegsObj.position.rotation[3])
+		BackLegsObj.position:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] - 0.05, BackLegsObj.position.rotation[3])
 	end
 	if controls.right() then
-		BackLegsObj:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] + 0.05, BackLegsObj.position.rotation[3])
+		BackLegsObj.position:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] + 0.05, BackLegsObj.position.rotation[3])
 	end
 	
 	screen.print(0, 16, "Vector Position: " .. BackLegs.Pos[1] .. ", " .. BackLegs.Pos[2] .. ", " .. BackLegs.Pos[3], color.new(255, 255, 255))

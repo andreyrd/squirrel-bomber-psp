@@ -18,6 +18,6 @@ function AnimationManager:play(id)
 	self.Objects[id]:play()
 end
 
-function AnimationManager:draw()
-	self.Objects[id]:draw()
+function AnimationManager:blit(id)
+	self.Objects[id]:blit()
 end
