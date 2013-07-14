@@ -1,22 +1,31 @@
 cam = Camera.create()
 cam.position:setPosition(5, 5, 5)
 
---First, create animation Objects and testtyy:
-BackLegsObj = Object.create(model.load("objects/squirrel_backlegs.obj", 0.1, color.new(0,0,0)))
-BackLegs = AnimationObject.create()
+function qm(msg)
+	screen.print(0, 5, msg, color.new(255, 255, 255))
+	screen.flip()
+	screen.waitvblankstart()
+end
 
-BackLegs:setObject(BackLegsObj) --Link them together
-BackLegs:setSmoothing(10)
---The Animation
-BackLegs:addTranslationStep({0.5, 0.2, 0.1}) --Move it a small amount
-BackLegs:addRotationStep({50, 30, 10}) --Rotate a little too.
 
-BackLegs:addTranslationStep({0, 0, 0}) --0, 0, 0 Is the objects local origin
-BackLegs:addRotationStep({0, 0, 0}) --0, 0, 0 Is no rotations on the local origin
+qm("Preparing to Load Squirrel Models")
+--The animation object acts as a model:
+Squirrel = AnimationObject.create()
+--Add the animation
+qm("Loading Model 1")
+Squirrel:addModel(model.load("objects/swt.obj", 0.1, color.new(0, 0, 0)))
+qm("Loading Model 2")
+Squirrel:addModel(model.load("objects/swn.obj", 0.1, color.new(0, 0, 0)))
+qm("Loading Model 3")
+Squirrel:addModel(model.load("objects/swm.obj", 0.1, color.new(0, 0, 0)))
+qm("Loading Model 4")
+Squirrel:addModel(model.load("objects/swr.obj", 0.1, color.new(0, 0, 0)))
+qm("Loading Model 5")
+Squirrel:addModel(model.load("objects/swl.obj", 0.1, color.new(0, 0, 0)))
+qm("Loading Model 6")
+Squirrel:addModel(model.load("objects/swj.obj", 0.1, color.new(0, 0, 0)))
 
-BackLegs:addTranslationStep({-0.4, -0.2, -0.1}) --Move it a small amount
-BackLegs:addRotationStep({50, 30, 10}) --Rotate a little too.
-
+Squirrel:setSpeed(4)
 
 Atmosphere = Environment.create()
 Atmosphere:setLights(true) --Enables lights
@@ -42,14 +51,16 @@ while true do
 	world.update()
 	
 	cam:setView()
-	cam.position:rotateTowards(BackLegsObj.position)
-	cam:lookAtPosition(BackLegsObj.position)
+	cam.position:rotateTowards(Squirrel.position)
+	cam:lookAtPosition(Squirrel.position)
 	
 	if controls.cross() then
-		BackLegs:play()
+		Squirrel:play()
+	else
+		Squirrel:reset()
 	end
 	
-	BackLegs:draw()
+	Squirrel:blit()
 	
 	screen.print(0, 2, "FPS: " .. screen.fps(), color.new(255, 255, 255))
 	
@@ -66,14 +77,14 @@ while true do
 	end
 	
 	if controls.left() then
-		BackLegsObj.position:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] - 0.05, BackLegsObj.position.rotation[3])
+		Squirrel.position:setRotation(Squirrel.position.rotation[1], Squirrel.position.rotation[2] - 0.05, Squirrel.position.rotation[3])
 	end
 	if controls.right() then
-		BackLegsObj.position:setRotation(BackLegsObj.position.rotation[1], BackLegsObj.position.rotation[2] + 0.05, BackLegsObj.position.rotation[3])
+		Squirrel.position:setRotation(Squirrel.position.rotation[1], Squirrel.position.rotation[2] + 0.05, Squirrel.position.rotation[3])
 	end
 	
-	screen.print(0, 16, "Vector Position: " .. BackLegs.Pos[1] .. ", " .. BackLegs.Pos[2] .. ", " .. BackLegs.Pos[3], color.new(255, 255, 255))
-	screen.print(0, 48, "Delta Steps: " .. BackLegs.DeltaTranslation[1] .. ", " .. BackLegs.DeltaTranslation[2] .. ", " .. BackLegs.DeltaTranslation[3], color.new(255, 255, 255))
+	screen.print(0, 4, "Free Memory: " .. os.getfreememory()/1024/1024, color.new(255, 255, 255)) --Bytes to KB to MB
+	
 	screen.flip()
 	screen.waitvblank()
 end

@@ -5,14 +5,23 @@ function AnimationObject.create()
 	local obj = {}
 	setmetatable(obj, AnimationObject)
 	
-	obj.position = Vector.create()
+	obj.position = Vector.create({0, 0, 0}, {0, 0, 0})
 	
 	obj.Models = {}
 	
 	obj.Speed = 1
+	obj.CurrentSpeedIterator = 1 --Don't know what to name this :P
 	obj.currentFrame = 1
 	
 	return obj
+end
+
+function AnimationObject:setSpeed(sp)
+	self.Speed = sp
+end
+
+function AnimationObject:addModel(model)
+	table.insert(self.Models, model)
 end
 
 function AnimationObject:reset()
@@ -20,10 +29,15 @@ function AnimationObject:reset()
 end
 
 function AnimationObject:play()
-	if self.currentFrame <= #self.Models then
-		self.currentFrame = self.currentFrame + 1
+	if self.CurrentSpeedIterator < self.Speed then
+		self.CurrentSpeedIterator = self.CurrentSpeedIterator + 1
 	else
-		self.currentFrame = 1
+		if self.currentFrame < #self.Models then
+			self.currentFrame = self.currentFrame + 1
+		else
+			self.currentFrame = 1
+		end
+		self.CurrentSpeedIterator = 1
 	end
 end
 
