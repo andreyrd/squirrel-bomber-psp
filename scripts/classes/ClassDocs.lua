@@ -1,5 +1,20 @@
 --Because, I like life to be easier on me :)
 
+--AnimationManager:
+AnimationManager.create()
+AnimationManager:addAnimation(Object, id) --Object = AnimationObject
+AnimationManager:play(id)
+AnimationManager:blit(id)
+
+--AnimationObject:
+AnimationObject.create()
+AnimationObject:setSpeed(speed)
+AnimationObject:addModel(model)
+AnimationObject:reset()
+AnimationObject:play()
+AnimationObject:position(x, y, z)
+AnimationObject:rotation(x, y, z)
+AnimationObject:blit()
 
 --Vectors:
 Vector.create()
