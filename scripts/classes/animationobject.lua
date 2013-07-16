@@ -6,6 +6,7 @@ function AnimationObject.create()
 	setmetatable(obj, AnimationObject)
 	
 	obj.position = Vector.create({0, 0, 0}, {0, 0, 0})
+	obj.collider = CollisionData.create()
 	
 	obj.Models = {}
 	
@@ -26,6 +27,10 @@ end
 
 function AnimationObject:reset()
 	self.currentFrame = 1
+end
+
+function AnimationObject:update() --Updates the collider
+	self.collider.position:setPosition(self.position.position[1], self.position.position[2], self.position.position[3])
 end
 
 function AnimationObject:play()

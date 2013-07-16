@@ -1,18 +1,18 @@
 TPSController = {}
 TPSController.__index = TPSController
 
-function TPSController.create(model)
+function TPSController.create(object_)
 	local tps = {}
 	setmetatable(tps, TPSController)
 	
-	tps.object = Object.create(model)
+	tps.object = object_
 	
 	tps.camera = Camera.create()
-	tps.camera.position:setPosition(1, 13, 0)
+	tps.camera.position:setPosition(1, 10, 0)
 	tps.cameraCollider = CollisionData.create()
 	
-	tps.moveSpeed = 5
-	tps.cameraSpeed = 0.14
+	tps.moveSpeed = 7
+	tps.cameraSpeed = 0.18
 	
 	tps.colliders = {}
 	
@@ -122,50 +122,84 @@ function TPSController:update()
 		self.object.position:setPosition(self.object.position.position[1] + (math.cos(CAngle[1]) / 5 + math.cos(CAngle[1] + math.rad(90)) / 5) * (math.sqrt(2)/2),
 										 self.object.position.position[2],
 										 self.object.position.position[3] + (math.sin(CAngle[1]) / 5 + math.sin(CAngle[1] + math.rad(90)) / 5) * (math.sqrt(2)/2))
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(45) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.down() and controls.right() then
 		self.object.position:setPosition(self.object.position.position[1] + (math.cos(CAngle[1] + math.rad(180)) / 5 + math.cos(CAngle[1] + math.rad(90)) / 5) * (math.sqrt(2)/2),
 										 self.object.position.position[2],
 										 self.object.position.position[3] + (math.sin(CAngle[1] + math.rad(180)) / 5 + math.sin(CAngle[1] + math.rad(90)) / 5) * (math.sqrt(2)/2))
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(315) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.down() and controls.left() then
 		self.object.position:setPosition(self.object.position.position[1] + (math.cos(CAngle[1] + math.rad(180)) / 5 + math.cos(CAngle[1] + math.rad(270)) / 5) * (math.sqrt(2)/2),
 										 self.object.position.position[2],
 										 self.object.position.position[3] + (math.sin(CAngle[1] + math.rad(180)) / 5 + math.sin(CAngle[1] + math.rad(270)) / 5) * (math.sqrt(2)/2))
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(225) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.up() and controls.left() then
 		self.object.position:setPosition(self.object.position.position[1] + (math.cos(CAngle[1]) / 5 + math.cos(CAngle[1] + math.rad(270)) / 5) * (math.sqrt(2)/2),
 										 self.object.position.position[2],
 										 self.object.position.position[3] + (math.sin(CAngle[1]) / 5 + math.sin(CAngle[1] + math.rad(270)) / 5) * (math.sqrt(2)/2))
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(135) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.up() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1]) / 5,
 										self.object.position.position[2],
 										self.object.position.position[3] + math.sin(CAngle[1]) / 5)
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(90) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.right() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(90)) / 5,
 										self.object.position.position[2],
 										self.object.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 -CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.down() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(180)) / 5,
 										self.object.position.position[2],
 										self.object.position.position[3] + math.sin(CAngle[1] + math.rad(180)) / 5)
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(270) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
 	elseif controls.left() then
 		self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(270)) / 5,
 										self.object.position.position[2],
 										self.object.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
+		self.object.position:setRotation(self.object.position.rotation[1],
+										 math.rad(180) - CAngle[1],
+										 self.object.position.rotation[3])
 		self.object:update()
+		self.object:play()
 		self:collisionAct()
+	else
+		self.object:reset() --Resets the animation
 	end
 	
 	if controls.l() then

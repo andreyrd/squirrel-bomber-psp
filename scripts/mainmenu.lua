@@ -11,6 +11,7 @@ mainmenu:addItem('SquirAnim2', 'scripts/squirrelanimtest2.lua')
 mainmenu:addItem('About', 'scripts/about.lua')
 mainmenu:addItem('savetest', 'scripts/savetest.lua')
 mainmenu:addItem('Reset', 'scripts/reset.lua')
+mainmenu:addItem('Camera Test', 'scripts/camtest.lua')
 
 while true do
 	controls.read()

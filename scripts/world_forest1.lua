@@ -6,7 +6,8 @@ forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
 forest1splash:setObjects(27)
 
-Player = TPSController.create(model.load("objects/acorn.obj", 0.15, color.new(0, 0, 0)))
+SquirAnim = AnimationObject.create()
+Player = TPSController.create(SquirAnim)
 	forest1splash:incrementPercent()
 Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
 	forest1splash:incrementPercent()
@@ -16,6 +17,13 @@ Player:setForwardWidth(4)
 Player:setBackwardWidth(4)
 Player:setRightWidth(4)
 Player:setLeftWidth(4)
+Player.object:addModel(model.load("objects/animations/swt.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swn.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swm.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swr.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swl.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swj.obj", 0.05, color.new(0, 0, 0)))
+Player.object:setSpeed(4)
 	
 
 TreeModel = model.load("objects/treebase.obj", 0.15, color.new(0, 0, 0))
@@ -93,7 +101,7 @@ while true do
 	Player.camera:setView()
 	
 	Player.object:update()
-	Player.object.model:blit()
+	Player.object:blit()
 	
 	APos = Player.object.position.position
 	BPos = Player.camera.position.position
