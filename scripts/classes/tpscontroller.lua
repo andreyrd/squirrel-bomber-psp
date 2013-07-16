@@ -8,7 +8,7 @@ function TPSController.create(object_)
 	tps.object = object_
 	
 	tps.camera = Camera.create()
-	tps.camera.position:setPosition(1, 10, 0)
+	tps.camera.position:setPosition(1, 15, 0)
 	tps.cameraCollider = CollisionData.create()
 	
 	tps.moveSpeed = 7
@@ -77,7 +77,7 @@ end
 function TPSController:collisionAct()
 	if self:collisionCheck() then
 		self.object.position:stepBack({true, false})
-		for a = 1, 6, 1 do
+		for a = 1, 6 do
 			self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(a * 15)) / 5,
 											 self.object.position.position[2],
 											 self.object.position.position[3] + math.sin(CAngle[1] + math.rad(a * 15)) / 5)

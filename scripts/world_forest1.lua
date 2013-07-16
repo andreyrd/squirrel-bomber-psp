@@ -7,6 +7,9 @@ forest1splash:setSplash(image.load('images/splash/game_splash.png'))
 forest1splash:setObjects(27)
 
 SquirAnim = AnimationObject.create()
+
+Outline = 0.1
+
 Player = TPSController.create(SquirAnim)
 	forest1splash:incrementPercent()
 Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.255}})
@@ -17,12 +20,12 @@ Player:setForwardWidth(4)
 Player:setBackwardWidth(4)
 Player:setRightWidth(4)
 Player:setLeftWidth(4)
-Player.object:addModel(model.load("objects/animations/swt.obj", 0.05, color.new(0, 0, 0)))
-Player.object:addModel(model.load("objects/animations/swn.obj", 0.05, color.new(0, 0, 0)))
-Player.object:addModel(model.load("objects/animations/swm.obj", 0.05, color.new(0, 0, 0)))
-Player.object:addModel(model.load("objects/animations/swr.obj", 0.05, color.new(0, 0, 0)))
-Player.object:addModel(model.load("objects/animations/swl.obj", 0.05, color.new(0, 0, 0)))
-Player.object:addModel(model.load("objects/animations/swj.obj", 0.05, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swt.obj", Outline, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swn.obj", Outline, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swm.obj", Outline, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swr.obj", Outline, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swl.obj", Outline, color.new(0, 0, 0)))
+Player.object:addModel(model.load("objects/animations/swj.obj", Outline, color.new(0, 0, 0)))
 Player.object:setSpeed(4)
 	
 
