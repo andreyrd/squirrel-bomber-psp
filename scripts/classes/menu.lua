@@ -75,7 +75,9 @@ function Menu:drawFrame() -- Draws one frame of our menu
 				 self.y + 20 + (n - 1) * (50 + self.itemSpacing), 
 				 self.Items[self.selected][1], 
 				 self.selectedColor)
-	screen.print(450, 258, page.."/"..pages, self.pagenumColor)
+  if pages > 1 then
+    screen.print(450, 258, page.."/"..pages, self.pagenumColor)
+  end
 end
 
 function Menu:moveUp() -- Call this when you want to move up
