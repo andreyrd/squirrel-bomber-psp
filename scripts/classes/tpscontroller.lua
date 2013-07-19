@@ -153,6 +153,9 @@ function TPSController:update()
 	if Dist > 17 then	
 		self.camera.position:moveTowards(self.object.position, self.cameraSpeed, {true, false, true})
 		self:camCollisionAct()
+	elseif Dist < 17 then
+		self.camera.position:moveTowards(self.object.position, -self.cameraSpeed, {true, false, true})
+		self:camCollisionAct()
 	end
 	
 	--Movement
