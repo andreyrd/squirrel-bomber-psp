@@ -13,6 +13,9 @@ function ParticleEmitter.create()
 	pe.maxparticles = 100
 	pe.minparticles = 50
 	
+	pe.maxlife = 30
+	pe.minlife = 20
+	
 	pe.particle = ""
 	
 	pe.particles = {}
@@ -67,6 +70,7 @@ function ParticleEmitter:update()
 			part.velocity:setPosition(math.random(minVelX, maxVelX), math.random(minVelY, maxVelY), math.random(minVelZ, maxVelZ))
 			part.increment:setPosition(self.otherfactor.position[1], self.otherfactor.position[2], self.otherfactor.position[3])
 			part.object.position:setPosition(self.position.position[1], self.position.position[2], self.position.position[3])
+			part.life = math.random(self.minlife, self.maxlife)
 			table.insert(self.particles, part)
 		end
 	end

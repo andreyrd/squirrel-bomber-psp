@@ -1,5 +1,5 @@
 mainmenu = Menu.create()
-mainmenu:addItem('Test', 'scripts/test.lua')
+mainmenu:addItem('Launch Game', 'scripts/startup.lua')
 mainmenu:addItem('About', 'scripts/about.lua')
 mainmenu:addItem('Options', 'scripts/options.lua')
 mainmenu:addItem('Exit', 'scripts/exit.lua')
