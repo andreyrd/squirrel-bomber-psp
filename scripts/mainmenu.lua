@@ -18,12 +18,14 @@ while true do
 	
 	if controls.press("up") then
 		mainmenu:moveUp()
-	end
-	if controls.press("down") then
+	elseif controls.press("down") then
 		mainmenu:moveDown()
-	end
-	if controls.press("cross") then
+	elseif controls.press("cross") then
 		mainmenu:executeSelected()
+	elseif controls.press("l") then
+		mainmenu:pagePrev()
+	elseif controls.press("r") then
+		mainmenu:pageNext()
 	end
 	
 	mainmenu:drawFrame()

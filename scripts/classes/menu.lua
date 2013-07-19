@@ -92,6 +92,24 @@ function Menu:moveDown() -- Moves down xD
 	end
 end
 
+function Menu:pageNext()
+	local new = self.selected + 4
+	if new < (#self.Items + 1) then
+		self.selected = new
+	else
+		self.selected = #self.Items
+	end
+end
+
+function Menu:pagePrev()
+	local new = self.selected - 4
+	if new > 0 then
+		self.selected = new
+	else
+		self.selected = 1
+	end
+end
+
 function Menu:executeSelected() -- Executes the selected item
 	dofile(self.Items[self.selected][2])
 end
