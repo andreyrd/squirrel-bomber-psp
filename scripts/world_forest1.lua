@@ -4,11 +4,13 @@
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
-forest1splash:setObjects(27)
+forest1splash:setObjects(39)
 
 SquirAnim = AnimationObject.create()
+	forest1splash:incrementPercent()
 
 Outline = 0.1
+	forest1splash:incrementPercent()
 
 Player = TPSController.create(SquirAnim)
 	forest1splash:incrementPercent()
@@ -17,21 +19,33 @@ Player.object.collider:setData({{-(2.255)/2, 0, -(2.255)/2}, {2.255, 2.255, 2.25
 Player.object:update()
 	forest1splash:incrementPercent()
 Player:setForwardWidth(4)
+	forest1splash:incrementPercent()
 Player:setBackwardWidth(4)
+	forest1splash:incrementPercent()
 Player:setRightWidth(4)
+	forest1splash:incrementPercent()
 Player:setLeftWidth(4)
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swt.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swn.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swm.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swr.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swl.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:addModel(model.load("objects/animations/swj.obj", Outline, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 Player.object:setSpeed(4)
+	forest1splash:incrementPercent()
 	
 
 TreeModel = model.load("objects/treebase.obj", 0.15, color.new(0, 0, 0))
 	forest1splash:incrementPercent()
 TreeMap = {{-30,0,0},{30,0,0},{0,0,30}}
+	forest1splash:incrementPercent()
 Trees = {}
 
 for a = 1, #TreeMap, 1 do
@@ -72,6 +86,7 @@ Atmosphere:update()
 	forest1splash:incrementPercent()
 
 light = Light.create()
+	forest1splash:incrementPercent()
 light:setId(1)
 	forest1splash:incrementPercent()
 light:enable()
