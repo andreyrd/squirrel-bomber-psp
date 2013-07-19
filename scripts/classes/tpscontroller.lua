@@ -8,7 +8,7 @@ function TPSController.create(object_)
 	tps.object = object_
 	
 	tps.camera = Camera.create()
-	tps.camera.position:setPosition(1, 15, 0)
+	tps.camera.position:setPosition(1, 14, 0)
 	tps.cameraCollider = CollisionData.create({{-(5)/2, 0, -(5)/2}, {5, 5, 5}})
 	
 	tps.moveSpeed = 7
@@ -20,11 +20,6 @@ function TPSController.create(object_)
 	tps.bw = 0.5
 	tps.lw = 0.5
 	tps.rw = 0.5
-	
-	tps.camfw = 50
-	tps.cambw = 50
-	tps.camlw = 50
-	tps.camrw = 50
 	
 	return tps
 end
@@ -109,22 +104,12 @@ end
 
 function TPSController:camCollisionCheck()
 	collision = false
-	self.cameraCollider:findExtreme(self.camera.position, self.camfw, self.cambw, self.camrw, self.camlw)
+	self.cameraCollider.position:setPosition(self.camera.position.position[1],
+											 self.camera.position.position[2],
+											 self.camera.position.position[3])
 	for a = 1, #self.colliders do
-		if self.colliders[a].Type == 1 then
-			if self.cameraCollider:checkCollision(self.colliders[a]) then
-				collision = true
-			end
-		else
-			for b = 1, 4 do
-				if self.colliders[a]:capsuleCollision(self.cameraCollider.extreme[b]) then
-					collision = true
-					break
-				end
-			end
-		end
-		if collision then -- Since we have a nested loop it's better to have it check if collided in an if statement
-			screen.print(30, 5, "CAMERA COLLISION OH NOES", color.new(255, 0, 0))
+		if self.cameraCollider:checkCollision(self.colliders[a]) then
+			collision = true
 			break
 		end
 	end
@@ -262,15 +247,9 @@ function TPSController:update()
 	
 	if controls.l() then
 		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (270)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(270)) / 5)
-		if self:camCollisionCheck() then
-			self.camera.position:stepBack()
-		end
-		--self:camCollisionAct()
+		self:camCollisionAct()
 	elseif controls.r() then
 		self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad (90)) / 5, self.camera.position.position[2], self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(90)) / 5)
-		--self:camCollisionAct()
-		if self:camCollisionCheck() then
-			self.camera.position:stepBack()
-		end
+		self:camCollisionAct()
 	end
 end
