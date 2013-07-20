@@ -4,7 +4,7 @@
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
-forest1splash:setObjects(39)
+forest1splash:setObjects(40)
 
 SquirAnim = AnimationObject.create()
 	forest1splash:incrementPercent()
@@ -104,7 +104,11 @@ light:update()
 
 controls.analogtodigital(50)
 	forest1splash:incrementPercent()
+
 	
+--Tree Screen
+treeScreen = Object.create(model.load("objects/treescreen.obj", 0.15, color.new(0, 0, 0)))
+	forest1splash:incrementPercent()
 forest1splash:fadeOut()
 forest1splash:clearSplash()
 
@@ -127,6 +131,8 @@ while true do
 	
 	Floor:update()
 	Floor.model:blit()
+	treeScreen:update()
+	treeScreen.model:blit()
 	
 	for a = 1, #Trees, 1 do
 		Trees[a]:update()
