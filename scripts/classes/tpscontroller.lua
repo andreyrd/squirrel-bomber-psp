@@ -8,7 +8,7 @@ function TPSController.create(object_)
 	tps.object = object_
 	
 	tps.camera = Camera.create()
-	tps.camera.position:setPosition(1, 14, 0)
+	tps.camera.position:setPosition(1, 13, 0)
 	tps.cameraCollider = CollisionData.create({{-(5)/2, 0, -(5)/2}, {5, 5, 5}})
 	
 	tps.moveSpeed = 7
@@ -80,18 +80,20 @@ end
 function TPSController:collisionAct()
 	if self:collisionCheck() then
 		self.object.position:stepBack({true, false})
-		for a = 1, 6 do
-			self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(a * 15)) / 5,
+		for a = 1, 4 do
+			self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(a * 22.5)) / 5,
 											 self.object.position.position[2],
-											 self.object.position.position[3] + math.sin(CAngle[1] + math.rad(a * 15)) / 5)
+											 self.object.position.position[3] + math.sin(CAngle[1] + math.rad(a * 22.5)) / 5)
+			self.object:update()
 			if self:collisionCheck() then
 				self.object.position:stepBack({true, false})
 			else
 				break
 			end
-			self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(a * -15)) / 5,
+			self.object.position:setPosition(self.object.position.position[1] + math.cos(CAngle[1] + math.rad(a * -22.5)) / 5,
 											 self.object.position.position[2],
-											 self.object.position.position[3] + math.sin(CAngle[1] + math.rad(a * -15)) / 5)
+											 self.object.position.position[3] + math.sin(CAngle[1] + math.rad(a * -22.5)) / 5)
+			self.object:update()
 			if self:collisionCheck() then
 				self.object.position:stepBack({true, false})
 			else
@@ -119,7 +121,7 @@ end
 function TPSController:camCollisionAct()
 	if self:camCollisionCheck() then
 		self.camera.position:stepBack({true, false})
-		for a = 1, 12 do
+		for a = 1, 6 do
 			self.camera.position:setPosition(self.camera.position.position[1] + math.cos(CAngle[1] + math.rad(a * 15)) / 5,
 											 self.camera.position.position[2],
 											 self.camera.position.position[3] + math.sin(CAngle[1] + math.rad(a * 15)) / 5)
@@ -148,18 +150,17 @@ function TPSController:update()
 	self.camera.position:rotateTowards(self.object.position)
 	self.camera:lookAtPosition(self.object.position)
 	
+	CAngle = self.camera.position.rotation
+	
 	--Move camera to player, if necessary
 	local Dist = self.object.position:getDistanceTo(self.camera.position)
-	if Dist > 17 then	
+	if Dist > 19 then	
 		self.camera.position:moveTowards(self.object.position, self.cameraSpeed, {true, false, true})
 		self:camCollisionAct()
-	elseif Dist < 17 then
+	elseif Dist < 15 then
 		self.camera.position:moveTowards(self.object.position, -self.cameraSpeed, {true, false, true})
 		self:camCollisionAct()
 	end
-	
-	--Movement
-	CAngle = self.camera.position.rotation
 	
 	local Delta = Vector.create()
 	Delta:setPosition(self.object.position.position[1], self.object.position.position[2], self.object.position.position[3])

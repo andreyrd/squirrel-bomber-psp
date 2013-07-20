@@ -4,7 +4,7 @@
 forest1splash = LoaderScreen.create(0)
 forest1splash:setFadeSpeed(8.5)
 forest1splash:setSplash(image.load('images/splash/game_splash.png'))
-forest1splash:setObjects(40)
+forest1splash:setObjects(46)
 
 SquirAnim = AnimationObject.create()
 	forest1splash:incrementPercent()
@@ -76,7 +76,7 @@ Atmosphere:setAmbient(color.new(255, 255, 255)) --Sets the ambient color
 	forest1splash:incrementPercent()
 Atmosphere:setSpecular(4.04) --sets the specular strength
 	forest1splash:incrementPercent()
-Atmosphere:setFogNear(10) --Sets where fog starts
+Atmosphere:setFogNear(20) --Sets where fog starts
 	forest1splash:incrementPercent()
 Atmosphere:setFogFar(30) --And where it ends
 	forest1splash:incrementPercent()
@@ -109,6 +109,24 @@ controls.analogtodigital(50)
 --Tree Screen
 treeScreen = Object.create(model.load("objects/treescreen.obj", 0.15, color.new(0, 0, 0)))
 	forest1splash:incrementPercent()
+treeScreenColliders = {CollisionData.create({{-(250)/2, 0, -(15)/2}, {250, 15, 15}}),
+					   CollisionData.create({{-(15)/2, 0, -(250)/2}, {15, 15, 250}}),
+					   CollisionData.create({{-(250)/2, 0, (15)/2}, {250, 15, 15}}),
+					   CollisionData.create({{-(15)/2, 0, -(250)/2}, {15, 15, 250}})}
+	forest1splash:incrementPercent()
+treeScreenColliders[1].position:setPosition(0, 0, 110)
+	forest1splash:incrementPercent()
+treeScreenColliders[2].position:setPosition(110, 0, 0)
+	forest1splash:incrementPercent()
+treeScreenColliders[3].position:setPosition(0, 0, -110)
+	forest1splash:incrementPercent()
+treeScreenColliders[4].position:setPosition(-110, 0, 0)
+	forest1splash:incrementPercent()
+for a = 1, 4 do
+	Player:addCollider(treeScreenColliders[a])
+end
+forest1splash:incrementPercent()
+
 forest1splash:fadeOut()
 forest1splash:clearSplash()
 
