@@ -11,7 +11,7 @@ function TPSController.create(object_)
 	tps.camera.position:setPosition(1, 13, 0)
 	tps.cameraCollider = CollisionData.create({{-(5)/2, 0, -(5)/2}, {5, 5, 5}})
 	
-	tps.moveSpeed = 7
+	tps.moveSpeed = 15
 	tps.cameraSpeed = 0.18
 	
 	tps.colliders = {}
