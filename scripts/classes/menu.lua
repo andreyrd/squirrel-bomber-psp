@@ -10,7 +10,7 @@ function Menu.create()
 	
 	menu.itemSpacing = 10
 	
-	menu.x = 115
+	menu.x = 140
 	menu.y = 21
 	
 	menu.font = nil
@@ -20,7 +20,7 @@ function Menu.create()
 	
 	menu.pagenumColor = color.new(255, 255, 255)
 	
-	menu.item_bg = image.load('images/menus/plank.png') -- Image behind the menu item. 150 x 30 px.
+	menu.item_bg = image.load('images/menus/plank.png') -- Image behind the menu item. 200 x 50 px.
 	
 	return menu
 end
@@ -50,7 +50,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 			n = n + 1
 			image.blit(self.item_bg, self.x, self.y + (n - 1) * (50 + self.itemSpacing))
 			if a~=self.selected then
-				screen.print(self.x + 125 - (screen.textwidth(self.Items[a][1])/2),
+				screen.print(self.x + 100 - (screen.textwidth(self.Items[a][1])/2),
 							 self.y + 20 + (n - 1) * (50 + self.itemSpacing),
 							 self.Items[a][1],
 							 self.unselectedColor)
@@ -63,7 +63,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 			n = n + 1
 			image.blit(self.item_bg, self.x, self.y + (n - 1) * (50 + self.itemSpacing))
 			if a~=self.selected then
-				screen.print(self.x + 125 - (screen.textwidth(self.Items[a][1])/2),
+				screen.print(self.x + 100 - (screen.textwidth(self.Items[a][1])/2),
 							 self.y + 20 + (n - 1) * (50 + self.itemSpacing),
 							 self.Items[a][1],
 							 self.unselectedColor)
@@ -71,7 +71,7 @@ function Menu:drawFrame() -- Draws one frame of our menu
 		end
 	end
 	n = self.selected - ((page - 1) * 4)
-	screen.print(self.x + 125 - (screen.textwidth(self.Items[self.selected][1])/2), 
+	screen.print(self.x + 100 - (screen.textwidth(self.Items[self.selected][1])/2), 
 				 self.y + 20 + (n - 1) * (50 + self.itemSpacing), 
 				 self.Items[self.selected][1], 
 				 self.selectedColor)
