@@ -19,6 +19,7 @@ function CollisionData.create(Data)
 	col.position = Vector.create()
 	col.radius = nil
 	col.Type = 1 --1 = box, 2 = cylindrical.
+  col.enabled = true -- Enabled by default
 	
 	col.extreme = {}
 	for a = 1, 4 do
@@ -71,4 +72,12 @@ function CollisionData:capsuleCollision(vertice)
 	else
 		return false, d
 	end
+end
+
+function CollisionData:enable() -- Enables the collider
+  self.enabled = true
+end
+
+function CollisionData:disable()
+  self.enabled = false
 end
