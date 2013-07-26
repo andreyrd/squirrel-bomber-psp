@@ -24,8 +24,10 @@ end
 
 function DispersionObject:enable()
   self.enabled = true
+  self.object.collider:enable()
 end
 
 function DispersionObject:disable()
   self.enabled = false
+  self.object.collider:disable()
 end
