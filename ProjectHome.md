@@ -1,0 +1,1 @@
+You are a squirrel who knows alchemy and thus can turn nuts into bombs. With this knowledge you must protect, while feeding, your starving family from predators.
